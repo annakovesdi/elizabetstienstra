@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Form to add new work to website-->
+<h2>Add Work</h2>
+<div class="container">
+    <div class="row">
+        <h3>Please fill out the form below to add an item</h3>
+        <hr>
+        <form action="{% url 'add_work' %}" method="POST" enctype="multipart/form-data" id="add-work">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form | crispy }}
+            </div>
+            <div class="row center">
+                <div class="col">             
+                    <button><a href="{% url 'oeuvre_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

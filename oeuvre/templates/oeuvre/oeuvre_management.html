@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--oeuvre management page-->
+<h2>Oeuvre Management</h2>
+<section class="center">
+    <button><a href="{% url 'add_work' %}" class="button">Add New Work</a></button>
+</section>
+<section>
+    <div class="container container-fluid">
+        <h3>Choose category to edit</h3>
+        <hr>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-12 col-md-6 col-lg-4 my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title center p-2 m-0">{{ category.friendly_name }}</h3>
+                        <hr class="d-none d-md-block m-0">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!--works in selected category only -->
+
+        </div>
+    </div>
+</section>
+{% endblock %}

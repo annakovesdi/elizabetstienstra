@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Edit work instance form-->
+<h2>Edit {{ work.title }} // {{ work.date }}</h2>
+<div class="container">
+    <div class="row">
+        <h3>Please fill out the form below to edit item</h3>
+        <hr>
+        <form action="{% url 'edit' work.id %}" method="POST" enctype="multipart/form-data" id="edit">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form.media }}
+                {{ form | crispy }}
+            </div>
+            <div class="row center">
+                <div class="col">             
+                    <button><a href="{% url 'oeuvre_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button><button><a href="{% url 'delete_work' work.id %}" class="button confirm-delete">Delete Work</a></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
