@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--about management form-->
+<h2>Edit About Section</h2>
+<section>
+    <div class="container container-fluid">
+        <form action="{% url 'edit_about' %}" method="POST" enctype="multipart/form-data" id="edit_about">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form.media }}
+                {{ form | crispy }}
+            </div>
+            <div class="row center"> 
+                <div class="col">             
+                    <button><a href="#" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
