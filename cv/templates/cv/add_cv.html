@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Form to add new cv instance-->
+<h2>Add cv</h2>
+<div class="container">
+    <div class="row">
+        <h3>Please fill out the form below to add an item</h3>
+        <hr>
+        <form action="{% url 'add_cv' %}" method="POST" enctype="multipart/form-data" id="add-cv">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form.media }}
+                {{ form | crispy }}
+            </div>
+            <div class="row center">
+                <div class="col">             
+                    <button><a href="{% url 'cv_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

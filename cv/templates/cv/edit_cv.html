@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Edit existing cv item-->
+<h2>Edit {{ cv.category }}</h2>
+<div class="container">
+    <div class="row">
+        <h3>Please fill out the form below to edit item</h3>
+        <hr>
+        <form action="{% url 'edit_cv' cv.id %}" method="POST" enctype="multipart/form-data" id="edit_cv">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form.media }}
+                {{ form | crispy }}
+            </div>
+            <div class="row center">
+                <div class="col">             
+                    <button><a href="{% url 'cv_management' %}?category={{ cv.category }}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button><button><a href="{% url 'delete_cv' cv.id %}" class="button confirm-delete">Delete</a></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

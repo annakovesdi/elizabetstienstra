@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title></title>
+{% endblock %}
+
+{% block content %}
+<!--CV template divided in categories-->
+    <h1>CV</h1>
+    <div class="container container-fluid">
+        <section>
+            <h2 class="cv-title">Subheading</h2>
+            <hr>
+            {% for i in cv %}
+            {% if not i.hide %}
+            <div class="col-12">
+                <p>{{ i.description|safe }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </section>
+        <br class="padding-bottom">  
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--cv management page-->
+<h2>cv Management</h2>
+<section class="center">
+    <button><a href="{% url 'add_cv' %}" class="button">Add New cv Item</a></button>
+</section>
+<section>
+    <div class="container container-fluid">
+        <h3 class="d-none d-md-block">Choose cv item to edit</h3>
+        <hr>
+        <div class="row">
+            {% for i in cv %}
+            <div class="col-6">
+                <p class="p-3">{{ i.category.friendly_name }} </p>
+            </div>
+            <div class="col-6 end margin-auto">
+                <button class="info-button"><a href="{% url 'edit_cv' i.id %}" class="button">Edit</a></button>
+                <button class="info-button"><a href="{% url 'delete_cv' i.id %}" class="button confirm-delete">Delete</a></button></p>
+            </div>
+        {% endfor %}   
+        </div>
+    </div>
+</section>
+{% endblock %}
