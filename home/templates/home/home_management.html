@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--home management page-->
+<h2>Home Management</h2>
+<section>
+    <div class="container container-fluid">
+        <form action="{% url 'home_management' %}" method="POST" enctype="multipart/form-data" id="add_category_description">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form | crispy }}
+            </div>
+            <div class="row center"> 
+                <div class="col">             
+                    <button><a href="{% url 'home' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                </div>
+            </div>
+        </form>
+    </div> 
+</section>
+{% endblock %}
