@@ -17,6 +17,18 @@ def about(request):
     return render(request, "about/about.html", context)
 
 
+# returns contact page
+def about(request):
+    contact = About.objects.only('contact')
+
+    context = {
+        'contact': contact,
+    }
+
+    return render(request, "about/contact.html", context)
+
+
+
 # edit about page - only one entry allowed
 @login_required
 def edit_about(request):

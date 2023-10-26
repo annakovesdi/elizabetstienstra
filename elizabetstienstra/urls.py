@@ -33,7 +33,7 @@ urlpatterns = [
     path("", include("home.urls")),
     path("about/", include("about.urls")),
     path("cv/", include("cv.urls")),
-    path("news/", include("news.urls")),
+    path("info/", include("info.urls")),
     path("oeuvre/", include("oeuvre.urls")),
     path("text/", include("text.urls")),
     path('admin/', admin.site.urls),

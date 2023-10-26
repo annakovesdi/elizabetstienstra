@@ -46,8 +46,7 @@ INSTALLED_APPS = [
     'home',
     'oeuvre',
     'about',
-    'news',
-    'text',
+    'info',
     'cv',
     # allauth
     'allauth',

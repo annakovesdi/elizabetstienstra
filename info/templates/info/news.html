@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>News and information on the artist Elizabet Stienstra</title>
+{% endblock %}
+
+{% block content %}
+<!--News template-->
+<section class="p-4">
+    <h1>News</h1>
+    <div class="container container-fluid">
+        {% for i in news %}
+        {% if not i.hide %}
+        <!--Image right news item-->
+        {% if forloop.counter|divisibleby:"2" %}
+            <div class="row">
+            <div class="col-12 col-md-8">
+                <h2 class="news">{{ i.date }} {{ i.title }}</h2>
+                <p>
+                    {{ i.description|safe }}
+                    {% if i.url %}
+                        <br><p><a href="http://{{ i.url }}" class="news-link" target="_blank">{{ i.url }}</a></p>
+                    {% endif %}
+                </p>
+            </div>
+            {% if i.image %}
+                {% if i.url %}
+                    <div class="col-12 col-md-4 order-first order-md-last">
+                        <a href="http://{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Thom Puckey" class="news-image margin-auto"></a>
+                    </div>
+                    {% else %}
+                    <div class="col-12 col-md-4 order-first order-md-last">
+                        <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-image margin-auto">
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <hr>
+        {% else %}
+        <!--Image left news item-->
+        <div class="row">
+        {% if i.image %}
+            {% if i.url %}
+                <div class="col-12 col-md-4">
+                    <a href="http://{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Thom Puckey" class="news-image margin-auto"></a>
+                </div>
+                {% else %}
+                <div class="col-12 col-md-4">
+                    <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-image margin-auto">
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="col-12 col-md-8">
+            <h2 class="news">{{ i.date }} {{ i.title }}</h2>
+            <p>
+                {{ i.description|safe }}
+                {% if i.url %}
+                <br><p><a href="http://{{ i.url }}" class="news-link" target="_blank">{{ i.url }}</a></p>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <hr>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
