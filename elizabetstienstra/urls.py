@@ -35,7 +35,6 @@ urlpatterns = [
     path("cv/", include("cv.urls")),
     path("info/", include("info.urls")),
     path("oeuvre/", include("oeuvre.urls")),
-    path("text/", include("text.urls")),
     path('admin/', admin.site.urls),
     path('sitemap.xml', sitemap,
         {"sitemaps": sitemaps},
