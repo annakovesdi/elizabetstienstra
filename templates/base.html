@@ -37,33 +37,51 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Elizabet Stienstra</a>
+              <a class="navbar-brand" href="{% url 'home' %}">Elizabet Stienstra</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Sculptures</a>
+                    <a class="nav-link" href="{% url 'oeuvre' %}?category=sculptures">Sculptures</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Commissions</a>
+                    <a class="nav-link" href="{% url 'oeuvre' %}?category=commissions">Commissions</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="{% url 'news' %}">News</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Text</a>
+                    <a class="nav-link" href="{% url 'texts' %}">Text</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'cv' %}">CV</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                   </li>
+                   <!--Account Dropdown-->
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                    <li><a class="dropdown-item" href="{% url 'home_management' %}">Homepage Management</a></li>
+                    <li><a class="dropdown-item" href="{% url 'oeuvre_management' %}">Oeuvre Management</a></li>
+                    <li><a class="dropdown-item" href="{% url 'info_management' %}">Information Management</a></li>
+                    <li><a class="dropdown-item" href="{% url 'cv_management' %}">Cv Management</a></li>
+                    <li><a class="dropdown-item" href="{% url 'edit_about' %}">About Management</a></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                </ul>
+            </li>
+        {% endif %}
+        {% endif %}
                 </ul>
               </div>
             </div>

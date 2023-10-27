@@ -8,7 +8,7 @@ from .forms import InfoForm
 
 # return information instances with category news
 def news(request):
-    news = Information.objects.filter(
+    news = Info.objects.filter(
         category__name__icontains='news').order_by('-date')
 
     context = {
@@ -19,7 +19,7 @@ def news(request):
 
 # return information instances with category texts
 def texts(request):
-    texts = Information.objects.filter(
+    texts = Info.objects.filter(
         category__name__icontains='texts').order_by('-date')
     
     context = {

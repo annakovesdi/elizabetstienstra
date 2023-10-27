@@ -18,7 +18,7 @@ def about(request):
 
 
 # returns contact page
-def about(request):
+def contact(request):
     contact = About.objects.only('contact')
 
     context = {

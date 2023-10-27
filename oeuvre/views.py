@@ -15,10 +15,22 @@ def oeuvre(request):
             category = request.GET['category'].split(',')
             oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
+            images = []
+            for work in oeuvre:
+                images.extend([work.image, work.image2, work.image3, 
+                work.image4, work.image5, work.image6, work.image7, 
+                work.image8, work.image9, work.image10, work.image11, 
+                work.image12, work.image13, work.image14, work.image15, 
+                work.image16, work.image17, work.image18, work.image19, 
+                work.image20, work.image21, work.image22, work.image23, 
+                work.image24, work.image25, work.image26, work.image27, 
+                work.image29, work.image29, work.image30, ])
+            
 
     context = {
         'oeuvre': oeuvre,
         'category': category,
+        'images': images,
     }
     return render(request, "oeuvre/oeuvre.html", context)
 
