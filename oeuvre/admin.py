@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Work, Category
+from .models import Work, Category, Image
 
 # Register your models here.
 
@@ -21,6 +21,12 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = (
+        'image',
+    )
+
 
 admin.site.register(Work, WorkAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Image, ImageAdmin)

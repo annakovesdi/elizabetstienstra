@@ -6,32 +6,37 @@
 {% endblock %}
 
 {% block content %}
-<div id="image-popup" class="overlay">
-	<div class="popup">
-		<h2>Title</h2>
-		<a class="close" href="#">×</a>
-		<div class="content">
-			Content
-		</div>
-	</div>
-</div>
 <div class="container-box">
-    {% for i in images %}
-        {% if i %}
-        <img class="thumbnail" src="{{ i.url }}">
-        {% endif %}
+    {% for image in images %}
+        <a type="button" data-bs-toggle="modal" data-bs-target="#image{{image.id}}"><img class="thumbnail" src="{{ image.image.url }}" ></a>
+        <!-- Modal -->
+<div class="modal fade" id="image{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="row">
+            <div class="col">
+                <img class="" src="{{ image.image.url }}" >
+            </div>
+            <div class="col">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{image.work.title}} ({{image.work.date |date:"Y" }})</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <p>{{ image.work.description }}</p>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
     {% endfor %}
 </div>
 {% endblock %}
 
 {% block js %}
 <script nonce="{{request.csp_nonce}}"  >
-var elements = document.getElementsByClassName('thumbnail');
-var overlay = document.getElementById('image-popup');
-for(var i = 0; i < elements.length; i++){
-    elements[i].addEventListener("click", function()
-    { overlay.classList.add("visible"); }
-    );
-}
+
+
 </script>
 {% endblock %}

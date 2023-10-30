@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Work, Category
-from .forms import WorkForm, CategoryForm
+from .models import Work, Category, Image
+from .forms import WorkForm, CategoryForm, ImageForm
 
 
 def oeuvre(request):
@@ -15,16 +16,7 @@ def oeuvre(request):
             category = request.GET['category'].split(',')
             oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
-            images = []
-            for work in oeuvre:
-                images.extend([work.image, work.image2, work.image3, 
-                work.image4, work.image5, work.image6, work.image7, 
-                work.image8, work.image9, work.image10, work.image11, 
-                work.image12, work.image13, work.image14, work.image15, 
-                work.image16, work.image17, work.image18, work.image19, 
-                work.image20, work.image21, work.image22, work.image23, 
-                work.image24, work.image25, work.image26, work.image27, 
-                work.image29, work.image29, work.image30, ])
+            images = Image.objects.all().order_by('work')
             
 
     context = {
@@ -35,26 +27,18 @@ def oeuvre(request):
     return render(request, "oeuvre/oeuvre.html", context)
 
 
-# return instance of work
-def work_detail(request, work_id):
-    work = get_object_or_404(Work, pk=work_id)
-    context = {
-        'work': work,
-    }
-    return render(request, context)
-
-
 # oeuvre management
 @login_required
 def oeuvre_management(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))
-    oeuvre_items = Work.objects.all()
-    categories = Category.objects.all()
+    oeuvre = Work.objects.all()
+    comissions = oeuvre.filter(category__name='comissions')
+    sculptures = oeuvre.filter(category__name='sculptures')
     context = {
-        'oeuvre': oeuvre_items,
-        'categories': categories,
+        'comissions': comissions,
+        'sculptures': sculptures,
     }
     return render(request, "oeuvre/oeuvre_management.html", context)
 
@@ -90,34 +74,67 @@ def edit_work(request, work_id):
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))
     work = get_object_or_404(Work, pk=work_id)
+    images = Image.objects.filter(work__id=work_id)
     if request.method == 'POST':
         form = WorkForm(request.POST, request.FILES, instance=work)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully edited work')
-            return redirect(reverse('work_detail', args=[work.id]))
+            return redirect(reverse('oeuvre_management'))
         else:
             messages.error(
                 request, 'Failed to edit work. Please check your input.')
     else:
         form = WorkForm(instance=work)
         messages.info(request, f'You are editing {work.title}')
-
+    imageform = ImageForm()
     template = 'oeuvre/edit_work.html'
     context = {
         'form': form,
         'work': work,
+        'images': images,
+        'imageform': imageform,
     }
 
     return render(request, template, context)
 
 
-# delete item
+# add an image
+@login_required
+def add_image(request, work_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Only an Admin can access this page')
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.work = Work.objects.get(id=work_id)
+            image.save()
+            messages.success(request, 'Succesfully added image')
+            return redirect(reverse('edit_work', args=[work_id]))
+        else:
+            messages.error(request, 'Failed to add item. Please check your input.')
+
+
+# delete image item
+@login_required
+def delete_image(request, image_id, work_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Only an Admin can access this page')
+        return redirect(reverse('home'))
+    image = get_object_or_404(Image, pk=image_id)
+    image.delete()
+    messages.success(request, 'Succesfully deleted work')
+    return redirect(reverse('edit_work', args=[work_id]))
+
+
+# delete work item
 @login_required
 def delete_work(request, work_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
-        return redirect(reverse('about'))
+        return redirect(reverse('home'))
     work = get_object_or_404(Work, pk=work_id)
     work.delete()
     messages.success(request, 'Succesfully deleted work')

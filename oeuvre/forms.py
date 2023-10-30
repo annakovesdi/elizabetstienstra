@@ -1,5 +1,5 @@
 from django import forms
-from .models import Work, Category
+from .models import Work, Category, Image
 
 
 class CategoryForm(forms.ModelForm):
@@ -29,3 +29,9 @@ class WorkForm(forms.ModelForm):
         names = [(c.id, c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = names
+
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ('image', )

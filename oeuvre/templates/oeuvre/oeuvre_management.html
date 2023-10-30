@@ -3,28 +3,36 @@
 
 {% block content %}
 <!--oeuvre management page-->
+<div class="container container-fluid">
 <h2>Oeuvre Management</h2>
 <section class="center">
     <button><a href="{% url 'add_work' %}" class="button">Add New Work</a></button>
 </section>
 <section>
-    <div class="container container-fluid">
-        <h3>Choose category to edit</h3>
+    <div class="row">
+        <h3>Choose work to edit</h3>
         <hr>
-        <div class="row">
-            {% for category in categories %}
-            <div class="col-12 col-md-6 col-lg-4 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title center p-2 m-0">{{ category.friendly_name }}</h3>
-                        <hr class="d-none d-md-block m-0">
-                    </div>
+        <div class="col-12 col-lg-6">
+            <h4>Sculptures</h4>
+            {% for work in sculptures %}
+            <div class="row">
+                <div class="col-7">
+                    <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
+                </div>
+                <div class="col">
+                    <button><a href="{% url 'edit_work' work.id %}">Edit</a></button><button><a href="{% url 'delete_work' work.id %}">Delete</a></button>
                 </div>
             </div>
+            
             {% endfor %}
-            <!--works in selected category only -->
-
+        </div>
+        <div class="col-12 col-lg-6">
+            <h4>Commissions</h4>
+            {% for work in commissions %}
+            <p>{{ work.title }} - {{ work.date |date:"Y" }}</p>
+            {% endfor %}
         </div>
     </div>
 </section>
+</div>
 {% endblock %}
