@@ -14,9 +14,9 @@ def oeuvre(request):
     if request.GET:
         if 'category' in request.GET:
             category = request.GET['category'].split(',')
-            oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
+            oeuvre = oeuvre.filter(category__name__in=category)
             category = Category.objects.filter(name__in=category)
-            images = Image.objects.all().order_by('work')
+            images = Image.objects.filter(work__in=oeuvre)
             
 
     context = {
@@ -34,10 +34,10 @@ def oeuvre_management(request):
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))
     oeuvre = Work.objects.all()
-    comissions = oeuvre.filter(category__name='comissions')
+    commissions = oeuvre.filter(category__name='commissions')
     sculptures = oeuvre.filter(category__name='sculptures')
     context = {
-        'comissions': comissions,
+        'commissions': commissions,
         'sculptures': sculptures,
     }
     return render(request, "oeuvre/oeuvre_management.html", context)
