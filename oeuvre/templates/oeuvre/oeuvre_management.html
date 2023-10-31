@@ -3,35 +3,51 @@
 
 {% block content %}
 <!--oeuvre management page-->
-<div class="container container-fluid">
-<h2>Oeuvre Management</h2>
-<section class="center">
-    <button><a href="{% url 'add_work' %}" class="button">Add New Work</a></button>
+<div class="container g-lg-0">
+<h1 class="pt-4 pb-2">Oeuvre Management</h1>
+<section class="text-center">
+    <button class="button-xl"><a href="{% url 'add_work' %}" class="button">Add New Work</a></button>
 </section>
 <section>
     <div class="row">
-        <h3>Choose work to edit</h3>
+        <h2 class="pt-3">Choose work to edit</h2>
         <hr>
         <div class="col-12 col-lg-6">
-            <h4>Sculptures</h4>
+        <div class="card">
+            <div class="card-body">
+            <h3>Sculptures</h3>
+            <hr>
             {% for work in sculptures %}
             <div class="row">
-                <div class="col-7">
+                <div class="col-6 m-auto">
                     <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
                 </div>
-                <div class="col">
+                <div class="col text-center">
                     <button><a href="{% url 'edit_work' work.id %}">Edit</a></button><button><a href="{% url 'delete_work' work.id %}">Delete</a></button>
                 </div>
-            </div>
-            
+            </div>         
             {% endfor %}
         </div>
+    </div>
+</div>
         <div class="col-12 col-lg-6">
-            <h4>Commissions</h4>
+            <div class="card">
+                <div class="card-body">
+            <h3>Commissions</h3>
+            <hr>
             {% for work in commissions %}
-            <p>{{ work.title }} - {{ work.date |date:"Y" }}</p>
+            <div class="row">
+                <div class="col-6 m-auto">
+                    <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
+                </div>
+                <div class="col text-center">
+                    <button><a href="{% url 'edit_work' work.id %}">Edit</a></button><button><a href="{% url 'delete_work' work.id %}">Delete</a></button>
+                </div>
+            </div>         
             {% endfor %}
         </div>
+    </div>
+</div>
     </div>
 </section>
 </div>

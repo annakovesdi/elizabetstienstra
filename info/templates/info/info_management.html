@@ -3,13 +3,13 @@
 
 {% block content %}
 <!--information management page-->
-<h2>Information Management</h2>
-<section class="center">
-    <button><a href="{% url 'add_info' %}" class="button">Add New News or Text Item</a></button>
+<h1 class="p-4">Information Management</h1>
+<section class="text-center">
+    <button class="button-xl"><a href="{% url 'add_info' %}" class="button">New info Item</a></button>
 </section>
 <section>
     <div class="container container-fluid">
-        <h3 class="d-none d-md-block">Choose category to edit</h3>
+        <h3 class="d-none d-md-block">Choose item to edit</h3>
         <hr>
         <div class="row">
             {% for c in category %}
@@ -19,7 +19,7 @@
                         <h3 class="card-title info-card-title">{{ c.friendly_name }}</h3>
                         <hr class="d-none d-md-block info-hr">
                         <div class="padding-5">
-                            <a href="{% url 'info_management_detail' %}?category={{ c.name }}">Edit {{ c.friendly_name }} section</a>
+                          <p>Display items here with buttons</p>  
                         </div>
                     </div>
                 </div>

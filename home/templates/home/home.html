@@ -6,11 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<img class="home-image" src="/static/img/VirginofLight-ElisabetStienstra.jpg" alt="">
-{% endblock %}
-
-{% block footer %}
-{% endblock %}
-
-{% block js %}
+    {% for i in image %}
+        <img class="home-image" src="{{ i.image.url }}" alt="Home image of artist Elizabet Stienstra {{ i.name}}">
+    {% endfor %}
 {% endblock %}

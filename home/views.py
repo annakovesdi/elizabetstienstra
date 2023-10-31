@@ -25,7 +25,8 @@ def home_management(request):
     if request.method == 'POST':
         form = HomeForm(request.POST, request.FILES, instance=existing_item)
         if form.is_valid():
-            existing_item.delete()
+            if existing_item:
+                existing_item.delete()
             form.save()
             messages.success(request, 'Succesfully added work')
             return redirect(reverse('home'))
@@ -38,5 +39,6 @@ def home_management(request):
     template = 'home/home_management.html'
     context = {
         'form': form,
+        'image': existing_item,
     }
     return render(request, template, context)

@@ -3,17 +3,17 @@
 
 {% block content %}
 <!--about management form-->
-<h2>Edit About Section</h2>
+<h1 class="pt-4">Edit About Section</h1>
 <section>
     <div class="container container-fluid">
         <form action="{% url 'edit_about' %}" method="POST" enctype="multipart/form-data" id="edit_about">
             {% csrf_token %}
-            <div class="margin-bottom">
+            <div>
                 {{ form.media }}
                 {{ form | crispy }}
             </div>
-            <div class="row center"> 
-                <div class="col">             
+            <div class="row"> 
+                <div class="col text-center pt-3 pb-4">             
                     <button><a href="#" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
                 </div>
             </div>

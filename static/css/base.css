@@ -7,9 +7,61 @@ body {
     color: #534F50;
 }
 
+h1 {
+    font-weight: 100;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 100;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #CC5500;
+    text-align: center;
+}
+
+h3 {
+    font-weight: 100;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: start;
+    color: #CC5500;
+}
+
+p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+button {
+    color: black;
+    background-color: transparent;
+    width: 60px;
+    height: 40px;
+    margin: 5px;
+    text-decoration: none;
+    box-shadow: 4px 3px 6px 4px rgba(117,151,152, .2);
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: gray;
+}
+
+.button-xl {
+    width: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /*---------------------------------Nav*/
 .navbar-brand {
-    padding-left: 20px!important;
     font-size: 30px;
     letter-spacing: 2px;
     color: #CC5500;
@@ -17,6 +69,7 @@ body {
 
 .nav-link {
     padding: 20px!important;
+    letter-spacing: 1px;
 }
 
 .nav-link:hover,
@@ -24,18 +77,22 @@ body {
     color: #CC5500!important;
 }
 
+.active {
+    color: #CC5500!important;
+}
+
 /*---------------------------------home*/
 .home-image {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
 }
 
 /*---------------------------------Oeuvre*/
 .container-box {
     min-height: 80vh;
-    padding: 10px 50px;
-    margin: 10px 50px;
+    padding: 10px 20px;
+    margin: 10px 20px;
 }
 
 .thumbnail {
@@ -62,8 +119,42 @@ body {
     --bs-modal-width: 90%!important;
 }
 
-.modal-title {
-  text-transform: uppercase;
-  font-weight: 100;
-  letter-spacing: 1px;
+.modal-image {
+    max-width: 100%;
 }
+
+/*---------------------------------Admin sections*/
+
+.django-ckeditor-widget {
+    display: flex!important;
+}
+
+.oeuvre-box {
+    width: 90%;
+}
+
+.current-image {
+    max-height: 400px;
+    max-width: 400px;
+}
+
+/*---------------------------------Media Queries*/
+
+@media only screen and (min-width: 992px) {
+    .navbar-brand {
+        padding-left: 20px!important;
+    }
+    h1 {
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+    button {
+        width: 100px;
+    }
+    .form-box {
+        max-width: 80%;
+    }
+    .container-box {
+        margin: 20px 150px;
+    }
+  }
