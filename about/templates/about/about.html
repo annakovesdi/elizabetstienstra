@@ -7,5 +7,21 @@
 
 {% block content %}
 <!--about template-->
-
+{% for a in about %}
+<section class="container container-fluid p-4">
+    <h1 class="pb-4">{{ a.title }}</h1>
+    <div class="row">
+        <div class="col">
+            <img class="about-img" src="{{ a.image.url }}">
+        </div>
+        <div class="col">
+            <img class="about-img" src="{{ a.image2.url }}">
+        </div>
+        <div class="col">
+            <img class="about-img" src="{{ a.image3.url }}">
+        </div>
+    </div>
+    <p>{{ a.description }}</p>
+</section>
+{% endfor %}
 {% endblock %}

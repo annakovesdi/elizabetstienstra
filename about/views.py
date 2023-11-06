@@ -39,7 +39,8 @@ def edit_about(request):
     if request.method == 'POST':
         form = AboutForm(request.POST, request.FILES, instance=existing_item)
         if form.is_valid():
-            existing_item.delete()
+            if existing_item:
+                existing_item.delete()
             form.save()
             messages.success(request, 'Successfully edited item')
             return redirect(reverse('about'))

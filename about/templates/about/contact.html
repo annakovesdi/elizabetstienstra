@@ -8,8 +8,10 @@
 {% block content %}
 <!--contact page-->
 <section class="p-4">
-    <div class="container-fluid">
-        <a href = "mailto: "><h2 class="contact">example@email.com</h2></a>
+    <div class="contact">
+        {% for c in contact %}
+            <a href = "mailto: {{ c.contact }}"><h2>{{ c.contact }}</h2></a>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

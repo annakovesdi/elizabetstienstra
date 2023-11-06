@@ -7,6 +7,7 @@ from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
 
 
+
 def oeuvre(request):
     oeuvre = Work.objects.all()
     category = None
