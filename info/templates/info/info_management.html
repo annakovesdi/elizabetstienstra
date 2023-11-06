@@ -3,23 +3,34 @@
 
 {% block content %}
 <!--information management page-->
-<h1 class="p-4">Information Management</h1>
+<h1 class="pt-4 pb-2">Information Management</h1>
 <section class="text-center">
     <button class="button-xl"><a href="{% url 'add_info' %}" class="button">New info Item</a></button>
 </section>
 <section>
     <div class="container container-fluid">
-        <h3 class="d-none d-md-block">Choose item to edit</h3>
+        <h2 class="pt-3">Choose item to edit</h2>
         <hr>
         <div class="row">
             {% for c in category %}
             <div class="col-12 col-md-6 my-2">
-                <div class="card info-card">
+                <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title info-card-title">{{ c.friendly_name }}</h3>
-                        <hr class="d-none d-md-block info-hr">
-                        <div class="padding-5">
-                          <p>Display items here with buttons</p>  
+                        <h3>{{ c.friendly_name }}</h3>
+                        <hr>
+                        <div>
+                            {% for i in items %}
+                                {% if i.category == c %}
+                                <div class="row">
+                                    <div class="col-6 m-auto">
+                                        <a href="{% url 'edit_info' i.id %}"><p>{{ i.title }} - {{ i.date |date:"Y" }}</p></a>
+                                    </div>
+                                    <div class="col text-center">
+                                        <button><a href="{% url 'edit_info' i.id %}">Edit</a></button><button><a href="{% url 'delete_info' i.id %}">Delete</a></button>
+                                    </div>
+                                </div>         
+                                {% endif %}
+                          {% endfor %}
                         </div>
                     </div>
                 </div>

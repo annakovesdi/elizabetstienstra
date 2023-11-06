@@ -3,7 +3,7 @@
 
 {% block content %}
 <!--Form to add new information-->
-<h2>Add Information</h2>
+<h1 class="p-4">Add Information</h1>
 <div class="container">
     <div class="row">
         <h3>Please fill out the form below to add an item</h3>
@@ -16,7 +16,7 @@
             </div>
             <div class="row center">
                 <div class="col">             
-                    <button><a href="{% url 'news_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                    <button><a href="{% url 'info_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
                 </div>
             </div>
         </form>

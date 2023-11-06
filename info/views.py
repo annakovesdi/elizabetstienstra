@@ -35,8 +35,10 @@ def info_management(request):
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('about'))
     category = Category.objects.all()
+    items = Info.objects.all()
     context = {
         'category': category,
+        'items': items,
     }
     return render(request, "info/info_management.html", context)
 
@@ -66,32 +68,9 @@ def add_info(request):
     return render(request, template, context)
 
 
-# information instances editing divided by category
-@login_required
-def info_management_detail(request):
-    if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
-        return redirect(reverse('home'))
-    info = Info.objects.all()
-    category = None
-
-    if request.GET:
-        if 'category' in request.GET:
-            category = request.GET['category'].split(',')
-            info = Info.objects.filter(
-                category__name__in=category).order_by('-date')
-            category = Category.objects.filter(name__in=category)
-
-    context = {
-        'info': info,
-        'category': category,
-    }
-    return render(request, "info/info_management_detail.html", context)
-
-
 # edit information instance
 @login_required
-def edit_info(request, information_id):
+def edit_info(request, info_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))

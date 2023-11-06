@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!--Form to add new information-->
+<h1 class="p-4">Edit Information</h1>
+<div class="container">
+    <div class="row">
+        <h3>Please fill out the form below to edit an item</h3>
+        <hr>
+        <form action="{% url 'edit_info' info.id %}" method="POST" enctype="multipart/form-data" id="add-information">
+            {% csrf_token %}
+            <div class="margin-bottom">
+                {{ form.media }}
+                {{ form | crispy }}
+            </div>
+            <div class="row center">
+                <div class="pb-4">             
+                    <button><a href="{% url 'info_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

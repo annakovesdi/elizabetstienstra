@@ -21,8 +21,8 @@ class Category(models.Model):
 class Info(models.Model):
     ''' Information Model '''
     category = models.ForeignKey(
-        'Category', null=False, blank=False,
-        on_delete=models.PROTECT, related_name='category')
+        Category,
+        on_delete=models.PROTECT)
     title = models.CharField(max_length=254)
     date = models.DateTimeField(auto_now=True)
     description = RichTextField()
