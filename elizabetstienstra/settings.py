@@ -21,14 +21,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y*(lmar0d37%*%0rwcxm)83-o!3q9$8cv-ro))sj-k6xdbh#al'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['localhost']
+CSRF_TRUSTED_ORIGINS = []
 
-ALLOWED_HOSTS = ['*', 'annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu105.gitpod.io/']
-CSRF_TRUSTED_ORIGINS = ['https://8000-annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu105.gitpod.io']
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+RENDER_EXTERNAL_CSRF = os.environ.get('RENDER_EXTERNAL_CSRF')
+HOST = os.environ.get('HOST')
 
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(HOST)
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    CSRF_TRUSTED_ORIGINS.append(RENDER_EXTERNAL_CSRF)
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME' : os.environ['CLOUD_NAME'],
+        'API_KEY' : os.environ['API_KEY'],
+        'API_SECRET' : os.environ['API_SECRET']
+    }
 
 # Application definition
 
