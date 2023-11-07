@@ -163,6 +163,9 @@ a {
 }
 
 /*---------------------------------Admin sections*/
+.login {
+    min-width: 60%;
+}
 
 .django-ckeditor-widget {
     display: flex!important;
