@@ -121,7 +121,7 @@ CSP_CONNECT_SRC = [
 CSP_IMG_SRC = [
     "'self'", 
     'data:',
-    # 'https://res.cloudinary.com/',
+    'https://res.cloudinary.com/',
 ]
 CSP_FRAME_SRC = ["'self'", ]
 CSP_MEDIA_SRC = ["'self'", ]
@@ -130,7 +130,7 @@ CSP_FONT_SRC = [
     "'self'", 
     "https://fonts.gstatic.com/", 
     "https://fonts.googleapis.com/", 
-    "https://ka-f.fontawesome.com/"
+    "https://ka-f.fontawesome.com/",
 ]
 
 ROOT_URLCONF = 'elizabetstienstra.urls'
