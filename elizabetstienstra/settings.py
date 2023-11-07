@@ -182,6 +182,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'elizabetstienstra.wsgi.application'
 
+DJANGO_SUPERUSER_PASSWORD = os.environ.get('DJANGO_SUPERUSER_PASSWORD', '')
+DJANGO_SUPERUSER_EMAIL = os.environ.get('DJANGO_SUPERUSER_EMAIL', '')
+DJANGO_SUPERUSER_USERNAME_FIELD = os.environ.get('DJANGO_SUPERUSER_USERNAME_FIELD', '')
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
