@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['localhost','8000-annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu106.gitpod.io']
-CSRF_TRUSTED_ORIGINS = [ 'https://8000-annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu106.gitpod.io']
+DEBUG = False
+ALLOWED_HOSTS = ['localhost']
+CSRF_TRUSTED_ORIGINS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 RENDER_EXTERNAL_CSRF = os.environ.get('RENDER_EXTERNAL_CSRF')
