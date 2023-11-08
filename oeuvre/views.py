@@ -52,18 +52,25 @@ def add_work(request):
         return redirect(reverse('home'))
     if request.method == 'POST':
         form = WorkForm(request.POST, request.FILES)
+        imageform = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            o = form.save()
+            files = request.FILES.getlist('images')
+            for f in files:
+                Image.objects.create(work=o, image=f)
             messages.success(request, 'Succesfully added work')
             return redirect(reverse('oeuvre_management'))
         else:
             messages.error(request, 'Failed to add item. Please check your input.')
     else:
         form = WorkForm()
+        imageform = ImageForm()
     form = WorkForm
+    imageform = ImageForm()
     template = 'oeuvre/add_work.html'
     context = {
         'form': form,
+        'imageform': imageform,
     }
     return render(request, template, context)
 
@@ -78,8 +85,12 @@ def edit_work(request, work_id):
     images = Image.objects.filter(work__id=work_id)
     if request.method == 'POST':
         form = WorkForm(request.POST, request.FILES, instance=work)
+        imageform = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            o = form.save()
+            files = request.FILES.getlist('images')
+            for f in files:
+                Image.objects.create(work=o, image=f)
             messages.success(request, 'Successfully edited work')
             return redirect(reverse('oeuvre_management'))
         else:
@@ -87,6 +98,7 @@ def edit_work(request, work_id):
                 request, 'Failed to edit work. Please check your input.')
     else:
         form = WorkForm(instance=work)
+        imageform = ImageForm()
         messages.info(request, f'You are editing {work.title}')
     imageform = ImageForm()
     template = 'oeuvre/edit_work.html'
@@ -96,26 +108,7 @@ def edit_work(request, work_id):
         'images': images,
         'imageform': imageform,
     }
-
     return render(request, template, context)
-
-
-# add an image
-@login_required
-def add_image(request, work_id):
-    if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
-        return redirect(reverse('home'))
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.work = Work.objects.get(id=work_id)
-            image.save()
-            messages.success(request, 'Succesfully added image')
-            return redirect(reverse('edit_work', args=[work_id]))
-        else:
-            messages.error(request, 'Failed to add item. Please check your input.')
 
 
 # delete image item

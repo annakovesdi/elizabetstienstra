@@ -3,7 +3,7 @@
 
 {% block content %}
 <!--Form to add new cv instance-->
-<h2>Add cv</h2>
+<h1 class="p-4">Add cv block</h1>
 <div class="container">
     <div class="row">
         <h3>Please fill out the form below to add an item</h3>
@@ -14,10 +14,8 @@
                 {{ form.media }}
                 {{ form | crispy }}
             </div>
-            <div class="row center">
-                <div class="col">             
-                    <button><a href="{% url 'cv_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
-                </div>
+            <div class="m-auto text-center">          
+                <button><a href="{% url 'cv_management' %}">Undo</a></button><button type="submit">Save</button>
             </div>
         </form>
     </div>

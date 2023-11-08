@@ -3,39 +3,38 @@
 
 {% block content %}
 <!--Edit work instance form-->
-<h2>Edit {{ work.title }} // {{ work.date }}</h2>
-<div class="container">
-    <div class="row">
-        <h3>Please fill out the form below to edit item</h3>
+<h1 class="p-4">Edit {{ work.title }} - {{ work.date }}</h1>
+<div class="container pb-4">
+        <h2>Please fill out the form below to edit item</h2>
         <hr>
         <form action="{% url 'edit_work' work.id %}" method="POST" enctype="multipart/form-data" id="edit">
             {% csrf_token %}
             <div class="margin-bottom">
                 {{ form.media }}
                 {{ form | crispy }}
-            </div>
-            <div class="row center">
-                <div class="col">             
-                    <button><a href="{% url 'oeuvre_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button><button><a href="{% url 'delete_work' work.id %}" class="button confirm-delete">Delete Work</a></button>
-                </div>
-            </div>
-        </form>
-        <form action="{% url 'add_image' work.id %}" method="POST" enctype="multipart/form-data" id="edit">
-            {% csrf_token %}
-            <div class="margin-bottom">
-                {{ imageform.media }}
                 {{ imageform | crispy }}
             </div>
-            <div class="row center">
-                <div class="col">             
-                    <button type="submit" id="submit-button" class="button">Save</button>
+                <div class="m-auto text-center pb-4">             
+                    <button><a href="{% url 'oeuvre_management' %}">Undo</a></button><button type="submit">Save</button><button><a href="{% url 'delete_work' work.id %}">Delete Work</a></button>
                 </div>
-            </div>
-        </form>
-            {% for image in images %}
-            <img class="thumbnail" src="{{image.image.url}}">
-            <button><a href="{% url 'delete_image' image.id image.work.id %}">Delete Image</a></button>
-            {% endfor %}
-    </div>
+        </form>  
+        <h2>Delete images of {{ work.title }} below</h2>
+        <hr>
+        <table>
+            <tr>
+                {% for image in images %}
+                <td>
+                    <div>
+                        <div class="m-auto text-center">
+                            <img class="thumbnail" src="{{image.image.url}}">
+                        </div>
+                        <div class="m-auto text-center">
+                            <button><a href="{% url 'delete_image' image.id image.work.id %}">Delete</a></button>
+                        </div>
+                    </div>
+                </td>
+                {% endfor %}
+		</tr>
+	</table>        
 </div>
 {% endblock %}
