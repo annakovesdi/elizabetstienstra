@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['localhost', '8000-annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu106.gitpod.io']
-CSRF_TRUSTED_ORIGINS = [ 'https://8000-annakovesdi-elizabetsti-44tjhk5bzyq.ws-eu106.gitpod.io']
+DEBUG = False
+ALLOWED_HOSTS = ['localhost']
+CSRF_TRUSTED_ORIGINS = [ ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 RENDER_EXTERNAL_CSRF = os.environ.get('RENDER_EXTERNAL_CSRF')
@@ -108,7 +108,7 @@ CSP_STYLE_SRC = [
 ]
 CSP_SCRIPT_SRC = [
     "'self'", 
-    'https://cdn.ckeditor.com',
+    'https://elizabet-stienstra.onrender.com/static/ckeditor/ckeditor-init.js',
     # 'https://elizabetstienstra.com/',
 ]
 CSP_INCLUDE_NONCE_IN = [
@@ -117,7 +117,8 @@ CSP_INCLUDE_NONCE_IN = [
 ]
 CSP_CONNECT_SRC = [
     "'self'",
-    "https://ka-f.fontawesome.com/"
+    "https://ka-f.fontawesome.com/",
+    "http://*.cke-cs.com",
 ]
 CSP_IMG_SRC = [
     "'self'", 
