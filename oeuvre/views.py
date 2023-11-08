@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from csp.decorators import csp_exempt
 
 from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
@@ -46,6 +47,7 @@ def oeuvre_management(request):
 
 # add work
 @login_required
+@csp_exempt
 def add_work(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
@@ -77,6 +79,7 @@ def add_work(request):
 
 # edit a work
 @login_required
+@csp_exempt
 def edit_work(request, work_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from csp.decorators import csp_exempt
 
 from .models import Info, Category
 from .forms import InfoForm
@@ -45,6 +46,7 @@ def info_management(request):
 
 # add information item
 @login_required
+@csp_exempt
 def add_info(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
@@ -70,6 +72,7 @@ def add_info(request):
 
 # edit information instance
 @login_required
+@csp_exempt
 def edit_info(request, info_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')

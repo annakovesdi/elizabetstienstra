@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from csp.decorators import csp_exempt
 
 from .models import About
 from .forms import AboutForm
@@ -31,6 +32,7 @@ def contact(request):
 
 # edit about page - only one entry allowed
 @login_required
+@csp_exempt
 def edit_about(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')

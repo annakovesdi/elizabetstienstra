@@ -21,7 +21,7 @@
             <img class="about-img" src="{{ a.image3.url }}">
         </div>
     </div>
-    <p>{{ a.description }}</p>
+    <p>{{ a.description | safe }}</p>
 </section>
 {% endfor %}
 {% endblock %}

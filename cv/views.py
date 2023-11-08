@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from csp.decorators import csp_exempt
 
 from .models import Cv, Category
 from .forms import CvForm
@@ -48,6 +49,7 @@ def cv_management(request):
 
 # add cv item
 @login_required
+@csp_exempt
 def add_cv(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
@@ -73,6 +75,7 @@ def add_cv(request):
 
 # edit cv instance
 @login_required
+@csp_exempt
 def edit_cv(request, cv_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')

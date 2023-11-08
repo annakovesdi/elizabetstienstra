@@ -29,7 +29,7 @@
                     <p class="xs-heading"> {{image.work.materials}}</p>
                     <p class="xs-heading"> {{image.work.size}}</p>
                     <hr class="xs-hr">
-                     <p>{{ image.work.description }}</p>
+                     <p>{{ image.work.description | safe}}</p>
                      {% if image.work.courtesy_of_gallery %}
                         <p>Courtesy of gallery</p>
                       {% endif %}

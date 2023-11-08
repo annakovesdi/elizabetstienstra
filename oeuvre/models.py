@@ -39,7 +39,7 @@ class Work(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField(null=False, blank=False)
+    image = models.ImageField(null=True, blank=True)
     work = models.ForeignKey(Work, on_delete=models.CASCADE)
 
     def __str__(self):
