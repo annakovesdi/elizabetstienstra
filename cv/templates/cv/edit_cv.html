@@ -15,7 +15,7 @@
                 {{ form | crispy }}
             </div>
             <div class="row center">           
-                    <button><a href="{% url 'cv_management' %}?category={{ cv.category }}">Undo</a></button><button type="submit">Save</button><button><a href="{% url 'delete_cv' cv.id %}">Delete</a></button>
+                    <button onclick="history.back()">Undo</button><button type="submit">Save</button><a href="{% url 'delete_cv' cv.id %}"><button>Delete</button></a>
             </div>
         </form>
     </div>

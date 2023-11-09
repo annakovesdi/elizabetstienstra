@@ -5,7 +5,7 @@
 <!--cv management page-->
 <h1 class="p-4">cv Management</h1>
 <section class="text-center">
-    <button class="button-xl"><a href="{% url 'add_cv' %}" class="button">New cv Item</a></button>
+    <a href="{% url 'add_cv' %}" class="button"><button class="button-xl">New cv Item</button></a>
 </section>
 <section>
     <div class="container container-fluid">
@@ -17,8 +17,8 @@
                 <p class="p-3">{{ i.category.friendly_name }} </p>
             </div>
             <div class="col-6 end margin-auto">
-                <button class="info-button"><a href="{% url 'edit_cv' i.id %}" class="button">Edit</a></button>
-                <button class="info-button"><a href="{% url 'delete_cv' i.id %}" class="button confirm-delete">Delete</a></button></p>
+                <a href="{% url 'edit_cv' i.id %}"><button>Edit</button></a>
+                <a href="{% url 'delete_cv' i.id %}" class="confirm-delete"><button>Delete</button></a>
             </div>
         {% endfor %}   
         </div>

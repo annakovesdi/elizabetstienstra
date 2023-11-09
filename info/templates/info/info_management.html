@@ -5,7 +5,7 @@
 <!--information management page-->
 <h1 class="pt-4 pb-2">Information Management</h1>
 <section class="text-center">
-    <button class="button-xl"><a href="{% url 'add_info' %}" class="button">New info Item</a></button>
+    <a href="{% url 'add_info' %}"><button class="button-xl">New info Item</button></a>
 </section>
 <section>
     <div class="container container-fluid">
@@ -13,7 +13,7 @@
         <hr>
         <div class="row">
             {% for c in category %}
-            <div class="col-12 col-md-6 my-2">
+            <div class="col-12 col-lg-6 my-2">
                 <div class="card">
                     <div class="card-body">
                         <h3>{{ c.friendly_name }}</h3>
@@ -25,8 +25,8 @@
                                     <div class="col-6 m-auto">
                                         <a href="{% url 'edit_info' i.id %}"><p>{{ i.title }} - {{ i.date |date:"Y" }}</p></a>
                                     </div>
-                                    <div class="col text-center">
-                                        <button><a href="{% url 'edit_info' i.id %}">Edit</a></button><button><a href="{% url 'delete_info' i.id %}">Delete</a></button>
+                                    <div class="col text-center g-0">
+                                        <a href="{% url 'edit_info' i.id %}"><button>Edit</button></a><a href="{% url 'delete_info' i.id %}"><button>Delete</button></a>
                                     </div>
                                 </div>         
                                 {% endif %}

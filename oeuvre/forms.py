@@ -21,23 +21,13 @@ class MultipleFileField(forms.FileField):
 
 
 class ImageForm(forms.Form):
-    images = MultipleFileField()
+    images = MultipleFileField(required=False)
 
 
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ('description', )
-
-    def __innit__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        placeholders = {
-            'description': 'Enter your description here',
-        }
-        for field in self.fields:
-            placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
-        self.fields[field].label = False
+        fields = '__all__'
 
 
 class WorkForm(forms.ModelForm):

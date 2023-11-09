@@ -14,9 +14,9 @@
                 {{ form.media }}
                 {{ form | crispy }}
             </div>
-            <div class="row center">
+            <div class="row text-center pb-4">
                 <div class="col">             
-                    <button><a href="{% url 'info_management' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                    <button onclick="history.back()">Undo</button><button type="submit">Save</button>
                 </div>
             </div>
         </form>

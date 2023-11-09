@@ -8,7 +8,6 @@ class Category(models.Model):
 
     name = models.CharField(max_length=60)
     friendly_name = models.CharField(max_length=60, null=True, blank=True)
-    description = RichTextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -40,7 +39,7 @@ class Work(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(null=True, blank=True)
-    work = models.ForeignKey(Work, on_delete=models.CASCADE)
+    work = models.ForeignKey(Work, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return str(self.id)

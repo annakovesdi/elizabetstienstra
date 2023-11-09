@@ -6,7 +6,7 @@
 <div class="container g-lg-0">
 <h1 class="pt-4 pb-2">Oeuvre Management</h1>
 <section class="text-center">
-    <button class="button-xl"><a href="{% url 'add_work' %}" class="button">Add New Work</a></button>
+    <a href="{% url 'add_work' %}" class="button"><button class="button-xl">Add New Work</button></a>
 </section>
 <section>
     <div class="row">
@@ -23,7 +23,7 @@
                     <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
                 </div>
                 <div class="col text-center">
-                    <button><a href="{% url 'edit_work' work.id %}">Edit</a></button><button><a href="{% url 'delete_work' work.id %}">Delete</a></button>
+                    <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
                 </div>
             </div>         
             {% endfor %}
@@ -41,7 +41,7 @@
                     <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
                 </div>
                 <div class="col text-center">
-                    <button><a href="{% url 'edit_work' work.id %}">Edit</a></button><button><a href="{% url 'delete_work' work.id %}">Delete</a></button>
+                    <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
                 </div>
             </div>         
             {% endfor %}

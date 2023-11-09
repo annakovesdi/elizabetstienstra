@@ -15,7 +15,7 @@
                 {{ form | crispy }}
             </div>
             <div class="m-auto text-center">          
-                <button><a href="{% url 'cv_management' %}">Undo</a></button><button type="submit">Save</button>
+                <button onclick="history.back()">Undo</button><button type="submit">Save</button>
             </div>
         </form>
     </div>

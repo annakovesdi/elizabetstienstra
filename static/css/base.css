@@ -62,7 +62,7 @@ a {
 
 /*---------------------------------Nav*/
 .navbar-brand {
-    font-size: 30px;
+    font-size: 25px;
     letter-spacing: 2px;
     color: #CC5500;
 }
@@ -183,16 +183,21 @@ a {
 
 /*---------------------------------Media Queries*/
 
+@media only screen and (min-width: 600px) {
+    button {
+        width: 80px;
+    }
+}
+
+
 @media only screen and (min-width: 992px) {
     .navbar-brand {
+        font-size: 30px;
         padding-left: 20px!important;
     }
     h1 {
         font-size: 22px;
         letter-spacing: 2px;
-    }
-    button {
-        width: 100px;
     }
     .form-box {
         max-width: 80%;
@@ -200,4 +205,10 @@ a {
     .container-box {
         margin: 20px 150px;
     }
-  }
+}
+
+@media only screen and (min-width: 1200px) {
+    button {
+        width: 100px;
+    }
+}

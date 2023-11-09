@@ -12,14 +12,14 @@
                 <img class="current-image p-4" src="{{ image.image.url }}">
             </div>
             <div class="col-12 col-lg-6 p-4">
-                <form action="{% url 'home_management' %}" method="POST" enctype="multipart/form-data" id="add_category_description">
+                <form action="{% url 'home_management' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="margin-bottom">
                         {{ form | crispy }}
                     </div>
                     <div class="row text-center pt-3 pb-4"> 
                         <div class="col">             
-                            <button><a href="{% url 'home' %}" class="button">Undo</a></button><button type="submit" id="submit-button" class="button">Save</button>
+                            <a href="{% url 'home' %}"><button>Undo</button></a><button type="submit">Save</button>
                         </div>
                     </div>
                 </form>
