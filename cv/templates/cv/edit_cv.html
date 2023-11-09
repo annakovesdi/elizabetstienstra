@@ -14,8 +14,10 @@
                 {{ form.media }}
                 {{ form | crispy }}
             </div>
-            <div class="row center">           
+            <div class="row center">
+                <div class="col">
                     <button onclick="history.back()">Undo</button><button type="submit">Save</button><a href="{% url 'delete_cv' cv.id %}"><button>Delete</button></a>
+                </div>                
             </div>
         </form>
     </div>

@@ -21,7 +21,7 @@
                         <div>
                             {% for i in items %}
                                 {% if i.category == c %}
-                                <div class="row">
+                                <div class="row {% if i.hide %} hidden {% endif %}">
                                     <div class="col-6 m-auto">
                                         <a href="{% url 'edit_info' i.id %}"><p>{{ i.title }} - {{ i.date |date:"Y" }}</p></a>
                                     </div>

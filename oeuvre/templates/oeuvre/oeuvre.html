@@ -11,6 +11,7 @@
 {% endfor %}
 <div class="container-box">
     {% for image in images %}
+    {% if not image.work.hide %}
         <a type="button" data-bs-toggle="modal" data-bs-target="#image{{image.id}}"><img class="thumbnail" src="{{ image.image.url }}" ></a>
         <!-- Modal -->
 <div class="modal fade" id="image{{image.id}}" tabindex="-1" aria-labelledby="modal-image" aria-hidden="true">
@@ -39,6 +40,7 @@
       </div>
     </div>
   </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

@@ -20,7 +20,7 @@
                 <hr>
                 {% for i in items %}
                 {% if i.category == c %}
-                <div class="row">
+                <div class="row {% if i.hide %} hidden {% endif %}">
                     <div class="col-6 m-auto">
                         <a href="{% url 'edit_cv' i.id %}"><p>{{ i.title }}</p></a>
                     </div>

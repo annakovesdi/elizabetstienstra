@@ -181,6 +181,10 @@ a {
     max-width: 400px;
 }
 
+.hidden {
+    background-color: #f0e9e4;
+}
+
 /*---------------------------------Media Queries*/
 
 @media only screen and (min-width: 600px) {

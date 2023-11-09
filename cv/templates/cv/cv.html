@@ -10,15 +10,17 @@
     <h1 class="p-4">Curriculum Vitae</h1>
     <div class="container container-fluid">
         {% for c in category %}
-        <section>
+        <section class="p-2">
             <h2 class="text-start">{{c.friendly_name}} </h2>
             <hr>
             {% for i in items %}
-            {% if i.category == c %}
-            <div class="col-12">
-                <p>{{ i.description|safe }}</p>
-            </div>
-            {% endif %}
+                {% if i.category == c %}
+                    {% if not i.hide %}
+                        <div class="col-12">
+                            <p>{{ i.description|safe }}</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
         </section>
         {% endfor %}
