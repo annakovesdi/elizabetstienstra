@@ -16,9 +16,9 @@
         {% if forloop.counter|divisibleby:"2" %}
             <div class="row">
             <div class="col-12 col-md-8 p-4">
-                <h2 class="text- xs-heading">{{ i.date | date:"M - Y"}}</h2> 
-                <h3>{{ i.title }}</h3>
-                <p class="text-end">
+                <h2 class="text-md-end xs-heading">{{ i.date | date:"M - Y"}}</h2> 
+                <h3 class="text-md-end">{{ i.title }}</h3>
+                <p class="text-md-end">
                     {{ i.description|safe }}
                     {% if i.url %}
                         <br><p><a href="http://{{ i.url }}" target="_blank">{{ i.url }}</a></p>
@@ -43,11 +43,11 @@
         <div class="row">
         {% if i.image %}
             {% if i.url %}
-                <div class="col-12 col-md-4 text-end">
+                <div class="col-12 col-md-4 text-md-end">
                     <a href="{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img m-auto"></a>
                 </div>
                 {% else %}
-                <div class="col-12 col-md-4 text-end">
+                <div class="col-12 col-md-4 text-md-end">
                     <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img m-auto">
                 </div>
             {% endif %}
