@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import sweetify
 
 from .models import Home
 from .forms import HomeForm
@@ -19,7 +20,8 @@ def index(request):
 @login_required
 def home_management(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     existing_item = Home.objects.first()
     if request.method == 'POST':
@@ -28,14 +30,16 @@ def home_management(request):
             if existing_item:
                 existing_item.delete()
             form.save()
-            messages.success(request, 'Succesfully added work')
+            sweetify.toast(request, 'Successfully edited Home', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('home'))
         else:
-            messages.error(
-                request, 'Failed to add item. Please check your input.')
+            sweetify.toast(request, 'Failed to edit Home. Please check your input', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
+        sweetify.toast(request, 'Editing Home section', icon="info", timer=2000,
+                            timerProgressBar=True)
         form = HomeForm(instance=existing_item)
-    form = HomeForm(instance=existing_item)
     template = 'home/home_management.html'
     context = {
         'form': form,

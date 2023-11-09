@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
+import sweetify
 
 from .models import About
 from .forms import AboutForm
@@ -35,7 +36,8 @@ def contact(request):
 @csp_exempt
 def edit_about(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     existing_item = About.objects.first()
     if request.method == 'POST':
@@ -44,14 +46,16 @@ def edit_about(request):
             if existing_item:
                 existing_item.delete()
             form.save()
-            messages.success(request, 'Successfully edited item')
+            sweetify.toast(request, 'Successfully edited the about section', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('about'))
         else:
-            messages.error(
-                request, 'Failed to edit work. Please check your input.')
+            sweetify.toast(request, 'Failed to edit work. Please check your input.', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
         form = AboutForm(instance=existing_item)
-        messages.info(request, 'You are editing the about section')
+        sweetify.toast(request, 'You are editing the about section', icon="info", timer=2000,
+                            timerProgressBar=True)
 
     template = 'about/edit_about.html'
     context = {

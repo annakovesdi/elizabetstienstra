@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
+import sweetify
 
 from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
@@ -33,7 +34,8 @@ def oeuvre(request):
 @login_required
 def oeuvre_management(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     items = Work.objects.all()
     category =  Category.objects.all()
@@ -49,7 +51,8 @@ def oeuvre_management(request):
 @csp_exempt
 def add_work(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     if request.method == 'POST':
         form = WorkForm(request.POST, request.FILES)
@@ -59,15 +62,17 @@ def add_work(request):
             files = request.FILES.getlist('images')
             for f in files:
                 Image.objects.create(work=o, image=f)
-            messages.success(request, 'Succesfully added work')
+            sweetify.toast(request, 'Succesfully added work', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('oeuvre_management'))
         else:
-            messages.error(request, 'Failed to add item. Please check your input.')
+            sweetify.toast(request, 'Failed to add item. Please check your input', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
+        sweetify.toast(request, 'Adding new work', icon="info", timer=2000,
+                            timerProgressBar=True)
         form = WorkForm()
         imageform = ImageForm()
-    form = WorkForm
-    imageform = ImageForm()
     template = 'oeuvre/add_work.html'
     context = {
         'form': form,
@@ -81,7 +86,8 @@ def add_work(request):
 @csp_exempt
 def edit_work(request, work_id):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     work = get_object_or_404(Work, pk=work_id)
     images = Image.objects.filter(work__id=work_id)
@@ -93,16 +99,17 @@ def edit_work(request, work_id):
             files = request.FILES.getlist('images')
             for f in files:
                 Image.objects.create(work=o, image=f)
-            messages.success(request, 'Successfully edited work')
+            sweetify.toast(request, f'Succesfully edited {work.title}', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('oeuvre_management'))
         else:
-            messages.error(
-                request, 'Failed to edit work. Please check your input.')
+            sweetify.toast(request, 'Failed to edit item. Please check your input', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
         form = WorkForm(instance=work)
         imageform = ImageForm()
-        messages.info(request, f'You are editing {work.title}')
-    imageform = ImageForm()
+        sweetify.toast(request, f'You are editing {work.title}', icon="info", timer=2000,
+                            timerProgressBar=True)
     template = 'oeuvre/edit_work.html'
     context = {
         'form': form,
@@ -117,11 +124,13 @@ def edit_work(request, work_id):
 @login_required
 def delete_image(request, image_id, work_id):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     image = get_object_or_404(Image, pk=image_id)
     image.delete()
-    messages.success(request, 'Succesfully deleted work')
+    sweetify.toast(request, 'Succesfully deleted image', icon="success", timer=2000,
+                            timerProgressBar=True)
     return redirect(reverse('edit_work', args=[work_id]))
 
 
@@ -129,9 +138,11 @@ def delete_image(request, image_id, work_id):
 @login_required
 def delete_work(request, work_id):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     work = get_object_or_404(Work, pk=work_id)
     work.delete()
-    messages.success(request, 'Succesfully deleted work')
+    sweetify.toast(request, 'Succesfully deleted work', icon="success", timer=2000,
+                            timerProgressBar=True)
     return redirect(reverse('oeuvre_management'))

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
+import sweetify
 
 from .models import Info, Category
 from .forms import InfoForm
@@ -33,7 +34,8 @@ def texts(request):
 @login_required
 def info_management(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('about'))
     category = Category.objects.all()
     items = Info.objects.all() 
@@ -49,20 +51,23 @@ def info_management(request):
 @csp_exempt
 def add_info(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     if request.method == 'POST':
         form = InfoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Succesfully added information')
+            sweetify.toast(request, 'Successfully added information', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('info_management'))
         else:
-            messages.error(
-                request, 'Failed to add item. Please check your input.')
+            sweetify.toast(request, 'Failed to add item. Please check your input', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
+        sweetify.toast(request, 'Adding new info item', icon="info", timer=2000,
+                            timerProgressBar=True)
         form = InfoForm()
-    form = InfoForm()
     template = 'info/add_info.html'
     context = {
         'form': form,
@@ -75,7 +80,8 @@ def add_info(request):
 @csp_exempt
 def edit_info(request, info_id):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     info = get_object_or_404(Info, pk=info_id)
     if request.method == 'POST':
@@ -83,21 +89,21 @@ def edit_info(request, info_id):
             request.POST, request.FILES, instance=info)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully edited information')
+            sweetify.toast(request, 'Successfully edited information', icon="success", timer=2000,
+                            timerProgressBar=True)
             return redirect(reverse('info_management'))
         else:
-            messages.error(
-                request, 'Failed to edit info. Please check your input.')
+            sweetify.toast(request, 'Failed to edit item. Please check your input', icon="error", timer=2000,
+                            timerProgressBar=True)
     else:
         form = InfoForm(instance=info)
-        messages.info(request, f'You are editing {info.title}')
-
+        sweetify.toast(request, f'You are editing {info.title}', icon="info", timer=2000,
+                            timerProgressBar=True)
     template = 'info/edit_info.html'
     context = {
         'form': form,
         'info': info,
     }
-
     return render(request, template, context)
 
 
@@ -105,9 +111,11 @@ def edit_info(request, info_id):
 @login_required
 def delete_info(request, info_id):
     if not request.user.is_superuser:
-        messages.error(request, 'Only an Admin can access this page')
+        sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
+                            timerProgressBar=True)
         return redirect(reverse('home'))
     info = get_object_or_404(Info, pk=info_id)
     info.delete()
-    messages.success(request, 'Succesfully deleted information')
+    sweetify.toast(request, 'Successfully deleted information', icon="success", timer=2000,
+                            timerProgressBar=True)
     return redirect(reverse('info_management'))
