@@ -6,18 +6,20 @@
 <div class="container g-lg-0">
 <h1 class="pt-4 pb-2">Oeuvre Management</h1>
 <section class="text-center">
-    <a href="{% url 'add_work' %}" class="button"><button class="button-xl">Add New Work</button></a>
+    <a href="{% url 'add_work' %}"><button class="button-xl">Add New Work</button></a>
 </section>
 <section>
     <div class="row">
         <h2 class="pt-3">Choose work to edit</h2>
         <hr>
+        {% for c in category %}
         <div class="col-12 col-lg-6">
         <div class="card">
             <div class="card-body">
-            <h3>Sculptures</h3>
+            <h3>{{ c.friendly_name }}</h3>
             <hr>
-            {% for work in sculptures %}
+            {% for work in items %}
+            {% if work.category == c %}
             <div class="row">
                 <div class="col-6 m-auto">
                     <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
@@ -25,29 +27,13 @@
                 <div class="col text-center">
                     <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
                 </div>
-            </div>         
+            </div> 
+            {% endif %}        
             {% endfor %}
         </div>
     </div>
 </div>
-        <div class="col-12 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-            <h3>Commissions</h3>
-            <hr>
-            {% for work in commissions %}
-            <div class="row">
-                <div class="col-6 m-auto">
-                    <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
-                </div>
-                <div class="col text-center">
-                    <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
-                </div>
-            </div>         
-            {% endfor %}
-        </div>
-    </div>
-</div>
+{% endfor %}
     </div>
 </section>
 </div>

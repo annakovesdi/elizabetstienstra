@@ -9,27 +9,11 @@ from .forms import CvForm
 
 # return cv instances ordered by category
 def cv(request):
-    cv = Cv.objects.all()
-    """
-    bio = Cv.objects.filter(category__name__icontains='bio')
-    solo_exhibitions = Cv.objects.filter(
-        category__name__icontains='solo_exhibitions')
-    group_exhibitions = Cv.objects.filter(
-        category__name__icontains='group_exhibitions')
-    commissions = Cv.objects.filter(
-        category__name__icontains='commissions')
-    collections = Cv.objects.filter(
-        category__name__icontains='collections')
-        """
+    items = Cv.objects.all()
+    category =  Category.objects.all()
     context = {
-        """
-        'bio': bio,
-        'solo_exhibitions': solo_exhibitions,
-        'group_exhibitions': group_exhibitions,
-        'commissions': commissions,
-        'collections': collections,
-        """
-        'cv': cv,
+        'category': category,
+        'items': items,
     }
     return render(request, "cv/cv.html", context)
 
@@ -40,9 +24,11 @@ def cv_management(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))
-    cv_item = Cv.objects.all()
+    items = Cv.objects.all()
+    category =  Category.objects.all()
     context = {
-        'cv': cv_item,
+        'category': category,
+        'items': items,
     }
     return render(request, "cv/cv_management.html", context)
 

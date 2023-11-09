@@ -22,7 +22,8 @@ class Cv(models.Model):
     category = models.ForeignKey(
         'Category', null=False, blank=False,
         on_delete=models.PROTECT, related_name='category')
-    description = RichTextField(blank=False, null=False, default='CV items')
+    title = models.CharField(max_length=200, default='Item')
+    description = RichTextField(blank=False, null=False)
     hide = models.BooleanField(default=False)
 
     def __str__(self):

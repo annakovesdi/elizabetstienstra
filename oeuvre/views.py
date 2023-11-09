@@ -35,12 +35,11 @@ def oeuvre_management(request):
     if not request.user.is_superuser:
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('home'))
-    oeuvre = Work.objects.all()
-    commissions = oeuvre.filter(category__name='commissions')
-    sculptures = oeuvre.filter(category__name='sculptures')
+    items = Work.objects.all()
+    category =  Category.objects.all()
     context = {
-        'commissions': commissions,
-        'sculptures': sculptures,
+        'category': category,
+        'items': items,
     }
     return render(request, "oeuvre/oeuvre_management.html", context)
 

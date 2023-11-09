@@ -36,7 +36,7 @@ def info_management(request):
         messages.error(request, 'Only an Admin can access this page')
         return redirect(reverse('about'))
     category = Category.objects.all()
-    items = Info.objects.all()
+    items = Info.objects.all() 
     context = {
         'category': category,
         'items': items,
