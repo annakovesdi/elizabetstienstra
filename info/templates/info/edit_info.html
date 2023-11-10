@@ -16,7 +16,7 @@
             </div>
             <div class="row text-center pb-4">
                 <div class="col">             
-                    <button onclick="history.back()">Undo</button><button type="submit">Save</button>
+                    <button onclick="history.back()">Undo</button><button type="submit">Save</button><a data-bs-toggle="modal" data-bs-target="#modal-delete" data-bs-link="{% url 'delete_info' info.id %}"><button>Delete</button></a>
                 </div>
             </div>
         </form>

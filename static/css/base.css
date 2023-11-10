@@ -185,6 +185,10 @@ a {
     background-color: #f0e9e4;
 }
 
+#modal-delete-title {
+    color: #9e4a44!important;
+}
+
 /*---------------------------------Media Queries*/
 
 @media only screen and (min-width: 600px) {

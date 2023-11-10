@@ -15,7 +15,7 @@
                 {{ imageform | crispy }}
             </div>
                 <div class="m-auto text-center pb-4">             
-                    <button onclick="history.back()">Undo</button><button type="submit">Save</button><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
+                    <button onclick="history.back()">Undo</button><button type="submit">Save</button><a data-bs-toggle="modal" data-bs-target="#modal-delete" data-bs-link="{% url 'delete_work' work.id %}"><button>Delete</button></a>
                 </div>
         </form>  
         <h2>Delete images of {{ work.title }} below</h2>
@@ -29,7 +29,7 @@
                             <img class="thumbnail" src="{{image.image.url}}">
                         </div>
                         <div class="m-auto text-center">
-                            <a href="{% url 'delete_image' image.id image.work.id %}"><button>Delete</button></a>
+                            <a data-bs-toggle="modal" data-bs-target="#modal-delete" data-bs-link="{% url 'delete_image' image.id image.work.id %}"><button>Delete</button></a>
                         </div>
                     </div>
                 </td>

@@ -25,7 +25,7 @@
                         <a href="{% url 'edit_cv' i.id %}"><p>{{ i.title }}</p></a>
                     </div>
                     <div class="col text-center">
-                        <a href="{% url 'edit_cv' i.id %}"><button>Edit</button></a><a href="{% url 'delete_cv' i.id %}"><button>Delete</button></a>
+                        <a href="{% url 'edit_cv' i.id %}"><button>Edit</button></a><a data-bs-toggle="modal" data-bs-target="#modal-delete" data-bs-link="{% url 'delete_cv' i.id %}"><button>Delete</button></a>
                     </div>
                 </div> 
                 {% endif %}        
