@@ -25,7 +25,7 @@
                     <a href="{% url 'edit_work' work.id %}"><p>{{ work.title }} - {{ work.date |date:"Y" }}</p></a>
                 </div>
                 <div class="col text-center">
-                    <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a href="{% url 'delete_work' work.id %}"><button>Delete</button></a>
+                    <a href="{% url 'edit_work' work.id %}"><button>Edit</button></a><a data-bs-toggle="modal" data-bs-target="#modal-delete" data-bs-link="{% url 'delete_work' work.id %}"><button>Delete</button></a>
                 </div>
             </div> 
             {% endif %}        

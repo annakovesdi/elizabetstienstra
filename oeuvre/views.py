@@ -144,5 +144,5 @@ def delete_work(request, work_id):
     work = get_object_or_404(Work, pk=work_id)
     work.delete()
     sweetify.toast(request, 'Succesfully deleted work', icon="success", timer=2000,
-                            timerProgressBar=True)
+                           timerProgressBar=True)
     return redirect(reverse('oeuvre_management'))
