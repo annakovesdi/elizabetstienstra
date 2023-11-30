@@ -12,13 +12,11 @@
     <div class="container container-fluid">
         {% for i in texts %}
         {% if not i.hide %}
-        <!--Image right item-->
-        {% if forloop.counter|divisibleby:"2" %}
             <div class="row">
-            <div class="col-12 col-md-8 p-4">
-                <h2 class="text-md-end xs-heading">{{ i.date | date:"M - Y"}}</h2> 
-                <h3 class="text-md-end">{{ i.title }}</h3>
-                <p class="text-md-end">
+            <div class="col-12 p-4">
+                <h2 class="text-center xs-heading">{{ i.date | date:"M - Y"}}</h2> 
+                <h3 class="text-center">{{ i.title }}</h3>
+                <p class="text-start">
                     {{ i.description|safe }}
                     {% if i.url %}
                         <br><p><a href="http://{{ i.url }}" target="_blank">{{ i.url }}</a></p>
@@ -27,46 +25,19 @@
             </div>
             {% if i.image %}
                 {% if i.url %}
-                    <div class="col-12 col-md-4 order-first order-md-last">
-                        <a href="http://{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img m-auto"></a>
+                    <div class="col-12 text-center">
+                        <a href="http://{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img text-center"></a>
                     </div>
                     {% else %}
-                    <div class="col-12 col-md-4 order-first order-md-last">
-                        <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img m-auto">
+                    <div class="col-12 text-center">
+                        <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img text-center">
                     </div>
                 {% endif %}
             {% endif %}
         </div>
         <hr>
-        {% else %}
-        <!--Image left item-->
-        <div class="row">
-        {% if i.image %}
-            {% if i.url %}
-                <div class="col-12 col-md-4 text-md-end">
-                    <a href="{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img m-auto"></a>
-                </div>
-                {% else %}
-                <div class="col-12 col-md-4 text-md-end">
-                    <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img m-auto">
-                </div>
-            {% endif %}
-        {% endif %}
-        <div class="col-12 col-md-8 p-4">
-            <h2 class="text-start xs-heading">{{ i.date | date:"M - Y"}}</h2> 
-            <h3>{{ i.title }}</h3>
-            <p>
-                {{ i.description|safe }}
-                {% if i.url %}
-                <br><p><a href="{{ i.url }}" target="_blank">{{ i.url }}</a></p>
-                {% endif %}
-            </p>
-        </div>
-    </div>
-    <hr>
-        {% endif %}
         {% endif %}
         {% endfor %}
     </div>
 </section>
-{% endblock %}
+{%endblock %}

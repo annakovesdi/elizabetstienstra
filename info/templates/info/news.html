@@ -16,9 +16,9 @@
         {% if forloop.counter|divisibleby:"2" %}
             <div class="row">
             <div class="col-12 col-md-6 p-4">
-                <h2 class="text-md-end xs-heading">{{ i.date | date:"M - Y" }}</h2>
+                <h2 class="text-start xs-heading">{{ i.date | date:"M - Y" }}</h2>
                 <h3>{{ i.title }}</h3>
-                <p class="text-md-end">
+                <p>
                     {{ i.description|safe }}
                     {% if i.url %}
                         <br><p><a href="http://{{ i.url }}" target="_blank">{{ i.url }}</a></p>
