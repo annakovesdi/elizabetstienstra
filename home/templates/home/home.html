@@ -6,7 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    {% for i in image %}
-        <img class="home-image" src="{{ i.image.url }}" alt="Home image of artist Elisabet Stienstra {{ i.name }}">
+    {% for i in home %}
+        {% if i.url %}
+            <a href="{{ i.url }}" target="_blank">
+                <img class="home-image" src="{{ i.image.url }}" alt="Home image of artist Elisabet Stienstra {{ i.name }}">
+            </a>
+        {% else %}
+            <img class="home-image" src="{{ i.image.url }}" alt="Home image of artist Elisabet Stienstra {{ i.name }}">
+        {% endif %}
+        <div class="container text-center">
+            {% if i.text %}
+                <h2 class="pt-4">{{ i.text }}</h2>
+            {% endif %}
+            {% if i.url %}
+                <a class="pb-4" href="{{i.url}}" target="_blank">{% if i.urltext %}{{ i.urltext }}{% else %}{{ i.url }}{% endif %}</a>
+            {% endif %}
+        </div>
     {% endfor %}
 {% endblock %}

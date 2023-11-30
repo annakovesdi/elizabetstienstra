@@ -62,9 +62,15 @@ a {
 
 /*---------------------------------Nav*/
 .navbar-brand {
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 2px;
     color: #CC5500;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: rgba(0,0,0,0.65);
 }
 
 .nav-link {
@@ -84,8 +90,8 @@ a {
 /*---------------------------------home*/
 .home-image {
     width: 100vw;
-    height: 100vh;
-    object-fit: cover;
+    max-height: 90vh;
+    object-fit: contain;
 }
 
 /*---------------------------------Oeuvre*/
@@ -200,7 +206,7 @@ a {
 
 @media only screen and (min-width: 992px) {
     .navbar-brand {
-        font-size: 30px;
+        font-size: 25px;
         padding-left: 20px!important;
     }
     h1 {
