@@ -102,22 +102,22 @@ a {
 }
 
 .thumbnail {
-    min-width: 50px;
-    max-width: 50px;
-    min-height: 50px;
-    max-height: 50px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
     object-fit: cover;
     overflow: hidden;
-    margin: 2px;
+    margin: 3px;
     transition: 0.1s ease-in;
 }
 
 .thumbnail:hover {
-    min-width: 53px;
-    max-width: 53px;
-    min-height: 53px;
-    max-height: 53px;
-    margin: 0px;
+    min-width: 104px;
+    max-width: 104px;
+    min-height: 104px;
+    max-height: 104px;
+    margin: 1px;
     cursor: pointer;
 }
 
@@ -126,11 +126,20 @@ a {
 }
 
 .modal-image {
-    width: 100%;
+    min-width: 100%;
+    max-width: 90vw;
     max-height: 90vh;
     min-height: 100%;
     object-fit: contain;
-    object-position: left;
+    object-position: center;
+}
+
+.modal-content {
+    width: max-content;
+}
+
+.modal-dialog {
+    width: max-content;
 }
 
 .modal-title {

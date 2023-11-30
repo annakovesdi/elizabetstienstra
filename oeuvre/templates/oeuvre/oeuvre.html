@@ -15,28 +15,22 @@
         <a type="button" data-bs-toggle="modal" data-bs-target="#image{{image.id}}"><img class="thumbnail" src="{{ image.image.url }}" ></a>
         <!-- Modal -->
 <div class="modal fade" id="image{{image.id}}" tabindex="-1" aria-labelledby="modal-image" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog m-auto">
       <div class="modal-content">
-        <div class="row">
-            <div class="col-12 col-lg-7">
-                <img class="modal-image" src="{{ image.image.url }}" >
+          <div class="modal-header">
+                <h2 class="modal-title fs-5">{{image.work.title}} ({{image.work.date |date:"Y" }})</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-12 col-lg-5">
-                <div class="modal-header">
-                    <h2 class="modal-title fs-5">{{image.work.title}} ({{image.work.date |date:"Y" }})</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+            <img class="modal-image d-flex" src="{{ image.image.url }}" >
                   <div class="modal-body">
                     <p class="xs-heading"> {{image.work.materials}}</p>
                     <p class="xs-heading"> {{image.work.size}}</p>
                     <hr class="xs-hr">
-                     <p>{{ image.work.description | safe}}</p>
-                     {% if image.work.courtesy_of_gallery %}
+                    <p>{{ image.work.description | safe}}</p>
+                      {% if image.work.courtesy_of_gallery %}
                         <p>Courtesy of gallery</p>
                       {% endif %}
                   </div>
-            </div>
-        </div>
       </div>
     </div>
   </div>
