@@ -41,7 +41,15 @@
 
 {% block js %}
 <script nonce="{{request.csp_nonce}}"  >
-
-
+window.addEventListener("load", (event) => {
+  const arrImages = document.querySelectorAll('.modal-image');
+  function appendModalWidth(images) {
+    images.forEach(image => {
+      let width = image.naturalWidth;
+      image.parentNode.style.width = width + 'px';
+    })
+  }
+  appendModalWidth(arrImages);
+});
 </script>
 {% endblock %}

@@ -134,7 +134,7 @@ a {
 }
 
 .modal {
-    --bs-modal-max-width: 90%!important;
+    --bs-modal-width: 90%!important;
 }
 
 .modal-image {
