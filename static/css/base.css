@@ -134,12 +134,9 @@ a {
     object-position: center;
 }
 
-.modal-content {
-    width: max-content;
-}
-
 .modal-dialog {
     width: max-content;
+    padding-top: 10px;
 }
 
 .modal-title {
