@@ -122,7 +122,7 @@ a {
 }
 
 .modal {
-    --bs-modal-width: 90%!important;
+    --bs-modal-max-width: 90%!important;
 }
 
 .modal-image {
@@ -135,7 +135,7 @@ a {
 }
 
 .modal-dialog {
-    width: max-content;
+    width: 90%;
     padding-top: 10px;
 }
 
@@ -223,6 +223,9 @@ a {
     }
     .container-box {
         margin: 20px 150px;
+    }
+    .modal-dialog {
+        width: max-content;
     }
 }
 
