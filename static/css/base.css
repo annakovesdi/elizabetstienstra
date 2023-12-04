@@ -227,8 +227,7 @@ a {
         max-width: 80%;
     }
     .container-box {
-        margin: 20px 150px;
-        padding: 10px 20px;
+        padding: 20px 150px;
     }
     .modal-dialog {
         width: max-content;
