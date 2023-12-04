@@ -97,8 +97,8 @@ a {
 /*---------------------------------Oeuvre*/
 .container-box {
     min-height: 80vh;
-    padding: 10px 20px;
-    margin: 10px 20px;
+    padding: 0px;
+    margin: 10px;
 }
 
 .thumbnail {
@@ -223,6 +223,7 @@ a {
     }
     .container-box {
         margin: 20px 150px;
+        padding: 10px 20px;
     }
     .modal-dialog {
         width: max-content;

@@ -9,7 +9,7 @@
 {% for c in category %}
 <h1 class="text-center pt-4 d-lg-none">{{ c }}</h1>
 {% endfor %}
-<div class="container-box">
+<div class="m-auto text-center container-box">
     {% for image in images %}
     {% if not image.work.hide %}
         <a type="button" data-bs-toggle="modal" data-bs-target="#image{{image.id}}"><img class="thumbnail" src="{{ image.image.url }}" ></a>
