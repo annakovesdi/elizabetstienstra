@@ -137,6 +137,10 @@ a {
     --bs-modal-width: 90%!important;
 }
 
+.modal-content {
+    max-width: 90vw;
+}
+
 .modal-image {
     min-width: 100%;
     max-width: 90vw;
