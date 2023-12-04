@@ -33,9 +33,21 @@ h3 {
     color: #CC5500;
 }
 
+.xs-heading {
+    color: #534F50;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-align: left;
+}
+
+.xs-hr {
+    max-width: 30px;
+}
+
 p {
     margin-top: auto;
     margin-bottom: auto;
+    text-align: left;
 }
 
 button {
@@ -142,17 +154,6 @@ a {
 .modal-title {
     color: #534F50;
 }
-
-.xs-heading {
-    color: #534F50;
-    text-transform: uppercase;
-    ont-size: 15px;
-}
-
-.xs-hr {
-    max-width: 30px;
-}
-
 
 /*---------------------------------Contact*/
 .contact {
