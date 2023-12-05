@@ -24,3 +24,9 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+{% block js %}
+<script nonce="{{request.csp_nonce}}" type="text/javascript" >
+    document.body.classList.add('overflow');
+</script>
+{% endblock %}

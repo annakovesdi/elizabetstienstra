@@ -5,6 +5,7 @@ body {
     font-family: 'Cabin', sans-serif;
     background-color: #ECECEA;
     color: #534F50;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -70,6 +71,10 @@ button {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+.overflow {
+    overflow: hidden;
 }
 
 /*---------------------------------Nav*/
