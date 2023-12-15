@@ -48,13 +48,10 @@ window.addEventListener("load", (event) => {
       let width = image.naturalWidth;
       let height = image.naturalHeight;
       if (width > height) {
-        console.log("morewide");
         image.classList.add('modal-wide');
       } else {
-        console.log("morehigh");
         image.classList.add('modal-high');
       }
-      image.parentNode.style.width = width + 'px';
     })
   }
   appendModalWidth(arrImages);
