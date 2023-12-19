@@ -173,6 +173,10 @@ a {
     object-position: center;
 }
 
+.modal-body {
+    max-width: 80vw;
+}
+
 .modal-wide {
     min-width: 80vw;
 }
