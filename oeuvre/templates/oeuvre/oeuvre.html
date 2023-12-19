@@ -45,7 +45,8 @@
 window.addEventListener("load", (event) => {
   const arrImages = document.querySelectorAll('.modal-image');
   const thumbnails = document.querySelectorAll('.thumbnail');
-  function appendModalWidth(images) {
+  // give min width or height depending on image orientation to maximise size
+  function imageOreintation(images) {
     images.forEach(image => {
       let width = image.naturalWidth;
       let height = image.naturalHeight;
@@ -55,28 +56,34 @@ window.addEventListener("load", (event) => {
         image.classList.add('modal-high');
       }
       image.parentNode.style.width = width + 'px';
-      console.log(image.nextElementSibling);
-      image.nextElementSibling.style.maxWidth = width + 'px';
     })
   }
+  // modal body width by rendered image size
+  function modalBodyWidth(img) {
+      let width = img.offsetWidth;
+      img.nextElementSibling.style.maxWidth = width + 'px';
+  }
+  // modal show and hide functionality
   function appendModal(images) {
     images.forEach(image => {
       image.addEventListener('click', function(){
         let id = image.parentNode.id.toString().substring(1);
         let modal = document.getElementById(id);
+        let modalImage = modal.getElementsByTagName('img')[0];
         modal.classList.add('visible');
+        modalBodyWidth(modalImage);
         modal.querySelector('.btn-close').addEventListener('click', function() {
           modal.classList.remove('visible');
         })
         window.onclick = function(event) {
           if (event.target == modal) {
-          modal.classList.remove('visible');
+            modal.classList.remove('visible');
+          }
         }
-}
       });
     })
   }
-  appendModalWidth(arrImages);
+  imageOreintation(arrImages);
   appendModal(thumbnails);
 });
 </script>
