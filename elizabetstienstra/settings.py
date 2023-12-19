@@ -25,8 +25,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '8000-annakovesdi-elizabetsti-5577fgfgaoz.ws-eu107.gitpod.io']
-CSRF_TRUSTED_ORIGINS = [ 'https://8000-annakovesdi-elizabetsti-5577fgfgaoz.ws-eu107.gitpod.io']
+ALLOWED_HOSTS = ['localhost']
+CSRF_TRUSTED_ORIGINS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 RENDER_EXTERNAL_CSRF = os.environ.get('RENDER_EXTERNAL_CSRF')
