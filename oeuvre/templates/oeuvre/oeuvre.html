@@ -55,7 +55,8 @@ window.addEventListener("load", (event) => {
         image.classList.add('modal-high');
       }
       image.parentNode.style.width = width + 'px';
-      image.querySelector('.modal-cus-con').style.width = width + 'px';
+      console.log(image.nextElementSibling);
+      image.nextElementSibling.style.maxWidth = width + 'px';
     })
   }
   function appendModal(images) {
