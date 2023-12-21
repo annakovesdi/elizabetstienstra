@@ -234,7 +234,8 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+DATE_INPUT_FORMATS = ["%d.%m.%Y"]
+USE_L10N = False
 
 USE_TZ = True
 
