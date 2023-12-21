@@ -32,7 +32,7 @@ class Work(models.Model):
         return str(self.title)
 
     class Meta:
-        ordering = ('order', '-date', )
+        ordering = ('-date', )
 
 
 
