@@ -107,11 +107,11 @@ CSP_STYLE_SRC = [
     "'self'", 
     "https://cdn.jsdelivr.net/", 
     "https://fonts.googleapis.com/", 
+    "https://elisabetstienstra.s3.amazonaws.com/",
     "'unsafe-inline'",
 ]
 CSP_SCRIPT_SRC = [
     "'self'", 
-    'https://elizabet-stienstra.onrender.com/static/ckeditor/ckeditor-init.js',
     # 'https://elizabetstienstra.com/',
 ]
 CSP_INCLUDE_NONCE_IN = [
@@ -126,6 +126,7 @@ CSP_IMG_SRC = [
     "'self'", 
     'data:',
     'https://res.cloudinary.com/',
+    "https://elisabetstienstra.s3.amazonaws.com/",
 ]
 CSP_FRAME_SRC = ["'self'", ]
 CSP_MEDIA_SRC = ["'self'", ]
