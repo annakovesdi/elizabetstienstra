@@ -21,13 +21,12 @@ class Work(models.Model):
         'Category', null=True, blank=True,
         on_delete=models.SET_NULL, related_name='category')
     title = models.CharField(max_length=254)
-    date = models.DateField()
+    date = models.DateField(verbose_name ='date, format dd-mm-yyyy')
     size = models.CharField(max_length=100)
     materials = models.CharField(max_length=254)
     description = RichTextField(null=True, blank=True)
     hide = models.BooleanField(default=False)
     courtesy_of_gallery = models.BooleanField(default=False)
-    order = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return str(self.title)
