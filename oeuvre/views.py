@@ -17,7 +17,7 @@ def oeuvre(request):
     if request.GET:
         if 'category' in request.GET:
             category = request.GET['category'].split(',')
-            oeuvre = oeuvre.filter(category__name__in=category)
+            oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
             images = Image.objects.filter(work__in=oeuvre)
             
@@ -37,7 +37,7 @@ def oeuvre_management(request):
         sweetify.toast(request, 'Only an Admin can access this page', icon="error", timer=2000,
                             timerProgressBar=True)
         return redirect(reverse('home'))
-    items = Work.objects.all()
+    items = Work.objects.all().order_by('-date')
     category =  Category.objects.all()
     context = {
         'category': category,
