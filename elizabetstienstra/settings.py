@@ -28,8 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['localhost', '8000-annakovesdi-elizabetsti-130ylo2gq63.ws-eu107.gitpod.io']
+DEBUG = False
+ALLOWED_HOSTS = ['localhost']
 CSRF_TRUSTED_ORIGINS = []
 
 EXTERNAL_HOSTNAME = os.getenv('EXTERNAL_HOSTNAME')
