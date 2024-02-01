@@ -19,7 +19,7 @@ def oeuvre(request):
             category = request.GET['category'].split(',')
             oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
-            images = Image.objects.filter(work__in=oeuvre)
+            images = Image.objects.filter(work__in=oeuvre).order_by('-work.date')
             
 
     context = {
