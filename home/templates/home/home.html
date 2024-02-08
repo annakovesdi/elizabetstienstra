@@ -3,6 +3,9 @@
 
 {% block title %}
 <title>Home | Elisabet Stienstra</title>
+{% for i in home %}
+    <link rel="preload" as="image" href="{{ i.image.url }}">
+{% endfor %}
 {% endblock %}
 
 {% block content %}
