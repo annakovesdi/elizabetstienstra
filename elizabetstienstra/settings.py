@@ -29,8 +29,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['localhost']
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['localhost', 'elisabetstienstra.com']
+CSRF_TRUSTED_ORIGINS = ['https://elisabetstienstra.com']
 
 EXTERNAL_HOSTNAME = os.getenv('EXTERNAL_HOSTNAME')
 
@@ -112,7 +112,7 @@ CSP_STYLE_SRC = [
 ]
 CSP_SCRIPT_SRC = [
     "'self'", 
-    # 'https://elizabetstienstra.com/',
+    'https://elisabetstienstra.com/',
 ]
 CSP_INCLUDE_NONCE_IN = [
     'script-src',
