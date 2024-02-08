@@ -24,7 +24,7 @@ class Info(models.Model):
         Category,
         on_delete=models.PROTECT)
     title = models.CharField(max_length=254)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateField(verbose_name ='date, format dd-mm-yyyy')
     description = RichTextField()
     image = models.ImageField(null=True, blank=True)
     url = models.CharField(null=True, blank=True, max_length=700)
@@ -32,3 +32,6 @@ class Info(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    class Meta:
+        ordering = ('-date', )
