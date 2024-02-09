@@ -12,7 +12,11 @@
 <div class="m-auto text-center container-box">
     {% for image in images %}
     {% if not image.work.hide %}
-        <a type="button" id="#image{{image.id}}" aria-label="thumbnail with image, opens modal with information on image on click"><img class="thumbnail" src="{{ image.image.url }}" alt="image {{image.work.title}} by artist Elisabet Stienstra"></a>
+      {% if image.thumbnail %}
+          <a type="button" id="#image{{image.id}}" aria-label="thumbnail with image, opens modal with information on image on click"><img class="thumbnail" src="{{ image.thumbnail.url }}" alt="image {{image.work.title}} by artist Elisabet Stienstra"></a>
+      {% else %}
+          <a type="button" id="#image{{image.id}}" aria-label="thumbnail with image, opens modal with information on image on click"><img class="thumbnail" src="{{ image.image.url }}" alt="image {{image.work.title}} by artist Elisabet Stienstra"></a>
+      {% endif %}
 <!-- Modal -->
 <div class="modal-custom fade" id="image{{image.id}}" tabindex="-1" aria-describedby="modal with enlarged image and more information on work" aria-hidden="true">
     <div class="modal-custom-content">

@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'sweetify',
     'ckeditor',
     'storages',
+    'django_advance_thumbnail',
     # csp
     'csp_helpers',
 ]

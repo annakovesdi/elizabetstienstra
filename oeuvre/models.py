@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django_advance_thumbnail import AdvanceThumbnailField
 
 
 class Category(models.Model):
@@ -38,6 +39,8 @@ class Work(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(null=True, blank=True)
+    thumbnail = AdvanceThumbnailField(source_field='image', upload_to='thumbnails/', null=True,
+                                      size=(160, 160)) 
     work = models.ForeignKey(Work, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
