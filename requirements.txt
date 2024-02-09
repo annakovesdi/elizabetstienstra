@@ -13,6 +13,7 @@ django-csp==3.7
 django-csp-helpers==0.7.1
 django-js-asset==2.1.0
 django-storages==1.14.2
+django_advance_thumbnail==1.0.0
 gunicorn==21.2.0
 jmespath==1.0.1
 oauthlib==3.2.2
