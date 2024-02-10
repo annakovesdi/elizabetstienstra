@@ -25,7 +25,7 @@ def oeuvre(request):
             category = Category.objects.filter(name__in=category)
             images = Image.objects.filter(work__in=oeuvre).order_by('-work__date')
             for i in images:
-                if i.thumbnail == null:
+                if i.thumbnail == None:
                     photo = i.image
                     img = pilimage.open(photo)
                     img.crop((160, 160, 160, 160))
