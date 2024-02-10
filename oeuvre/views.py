@@ -29,7 +29,7 @@ def oeuvre(request):
                 path_name =str(i.image)
                 x = path_name.rsplit(".", 1)
                 filename = x[0]+'_thumbnail'+'.'+x[1]
-                path = settings.MEDIA_ROOT+'/thumbnails/'+filename
+                path = settings.STATIC_URL+'/thumbnails/'+filename
                 img.save(path)
                 i.thumbnail = 'thumbnails/'+filename
                 i.save()
