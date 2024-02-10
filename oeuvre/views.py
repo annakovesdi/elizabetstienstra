@@ -26,9 +26,8 @@ def oeuvre(request):
                 photo = i.image
                 img = pilimage.open(photo)
                 img.crop((160, 160, 160, 160))
-                path_name =photo.path
-                img_name = path_name.split("/")[-1]
-                x = img_name.rsplit(".", 1)
+                path_name =str(i.image)
+                x = path_name.rsplit(".", 1)
                 filename = x[0]+'_thumbnail'+'.'+x[1]
                 path = settings.MEDIA_ROOT+'/thumbnails/'+filename
                 img.save(path)
