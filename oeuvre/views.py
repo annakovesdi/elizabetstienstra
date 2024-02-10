@@ -33,7 +33,7 @@ def oeuvre(request):
                 filename = x[0]+'_thumbnail'+'.'+x[1]
                 path = settings.STATIC_URL+'thumbnails/'+filename
                 imageBuffer = BytesIO()
-                img.save(imageBuffer, format='.'+x[1])
+                img.save(imageBuffer)
                 imageFile = default_storage.open(filename, 'wb')
                 imageFile.write(imageBuffer.getvalue())
                 imageFile.flush()
