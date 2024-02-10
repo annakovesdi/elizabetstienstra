@@ -1,7 +1,7 @@
 
 window.addEventListener("load", (event) => {
     // only show loader when site is loading
-    document.querySelector('.loader-container').style.display ="none";
+    // document.querySelector('.loader-container').style.display ="none";
     // Add active class to nav-links
     const activePage = window.location.pathname;
     var general = true;
