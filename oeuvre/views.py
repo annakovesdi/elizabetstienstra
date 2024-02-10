@@ -26,21 +26,22 @@ def oeuvre(request):
             images = Image.objects.filter(work__in=oeuvre).order_by('-work__date')
             for i in images:
                 if i.thumbnail == None:
-                    photo = i.image
-                    img = pilimage.open(photo)
-                    img.crop((160, 160, 160, 160))
                     path_name =str(i.image)
-                    x = path_name.rsplit(".", 1)
-                    filename = x[0]+'_thumbnail'+'.'+x[1]
-                    path = settings.STATIC_URL+'thumbnails/'+filename
-                    imageBuffer = BytesIO()
-                    img.save(imageBuffer, format='JPEG')
-                    imageFile = default_storage.open(filename, 'wb')
-                    imageFile.write(imageBuffer.getvalue())
-                    imageFile.flush()
-                    imageFile.close()
-                    i.thumbnail = 'thumbnails/'+filename
-                    i.save()
+                    if path_name.lower().endswith(('.jpg')):
+                        photo = i.image
+                        img = pilimage.open(photo)
+                        img.crop((160, 160, 160, 160))
+                        x = path_name.rsplit(".", 1)
+                        filename = x[0]+'_thumbnail'+'.'+x[1]
+                        path = settings.STATIC_URL+'thumbnails/'+filename
+                        imageBuffer = BytesIO()
+                        img.save(imageBuffer, format='JPEG')
+                        imageFile = default_storage.open(filename, 'wb')
+                        imageFile.write(imageBuffer.getvalue())
+                        imageFile.flush()
+                        imageFile.close()
+                        i.thumbnail = 'thumbnails/'+filename
+                        i.save()
             
 
     context = {
