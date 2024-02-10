@@ -4,14 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
 import sweetify
-from PIL import Image as pilimage
-from django.core.files.storage import default_storage 
-from io import BytesIO
 
 from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
-from elizabetstienstra import settings
-
 
 
 def oeuvre(request):
@@ -24,25 +19,6 @@ def oeuvre(request):
             oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
             images = Image.objects.filter(work__in=oeuvre).order_by('-work__date')
-            for i in images:
-                if i.thumbnail == None:
-                    path_name =str(i.image)
-                    if path_name.lower().endswith(('.jpg')):
-                        photo = i.image
-                        img = pilimage.open(photo)
-                        img.crop((160, 160, 160, 160))
-                        x = path_name.rsplit(".", 1)
-                        filename = x[0]+'_thumbnail'+'.'+x[1]
-                        path = settings.STATIC_URL+'thumbnails/'+filename
-                        imageBuffer = BytesIO()
-                        img.save(imageBuffer, format='JPEG')
-                        imageFile = default_storage.open(filename, 'wb')
-                        imageFile.write(imageBuffer.getvalue())
-                        imageFile.flush()
-                        imageFile.close()
-                        i.thumbnail = 'thumbnails/'+filename
-                        i.save()
-            
 
     context = {
         'oeuvre': oeuvre,
