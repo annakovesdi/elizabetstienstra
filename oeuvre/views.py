@@ -4,9 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
 import sweetify
+from PIL import Image as pilimage
 
 from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
+from elizabetstienstra import settings
 
 
 
@@ -20,6 +22,18 @@ def oeuvre(request):
             oeuvre = oeuvre.filter(category__name__in=category).order_by('-date')
             category = Category.objects.filter(name__in=category)
             images = Image.objects.filter(work__in=oeuvre).order_by('-work__date')
+            for i in images:
+                photo = i.image
+                img = pilimage.open(photo)
+                img.crop((160, 160, 160, 160))
+                path_name =photo.path
+                img_name = path_name.split("/")[-1]
+                x = img_name.rsplit(".", 1)
+                filename = x[0]+'_thumbnail'+'.'+x[1]
+                path = settings.MEDIA_ROOT+'/thumbnails/'+filename
+                img.save(path)
+                i.thumbnail = 'thumbnails/'+filename
+                i.save()
             
 
     context = {
