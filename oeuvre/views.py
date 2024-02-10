@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from csp.decorators import csp_exempt
 import sweetify
 from PIL import Image as pilimage
+from django.core.files.storage import default_storage 
+from io import BytesIO
 
 from .models import Work, Category, Image
 from .forms import WorkForm, CategoryForm, ImageForm
@@ -30,7 +32,12 @@ def oeuvre(request):
                 x = path_name.rsplit(".", 1)
                 filename = x[0]+'_thumbnail'+'.'+x[1]
                 path = settings.STATIC_URL+'thumbnails/'+filename
-                img.save(path)
+                imageBuffer = BytesIO()
+                img.save(imageBuffer, format=x[1])
+                imageFile = default_storage.open(filename, 'wb')
+                imageFile.write(imageBuffer.getvalue())
+                imageFile.flush()
+                imageFile.close()
                 i.thumbnail = 'thumbnails/'+filename
                 i.save()
             
