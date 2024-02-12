@@ -20,7 +20,7 @@
 <!-- Modal -->
 <div class="modal-custom fade" id="image{{image.id}}" tabindex="-1" aria-describedby="modal with enlarged image and more information on work" aria-hidden="true">
     <div class="modal-custom-content">
-          <img class="modal-image d-flex" src="{{ image.image.url }}" >
+          <img class="modal-image d-flex" data-src="{{ image.image.url }}" >
           <div class="modal-cus-con">
           <div class="modal-header pt-2 ps-4 pe-4">
             <h2 class="modal-title">{{image.work.title}} ({{image.work.date |date:"Y" }})</h2>
@@ -54,8 +54,6 @@ window.addEventListener("load", (event) => {
   function imageOreintation(images) {
     images.forEach(image => {
       // Make sure images are loaded only when needed in modal
-      image.setAttribute("data-src", image.getAttribute('src'));
-      image.removeAttribute('src');
       image.setAttribute("data-areSet", false);
 
       let width = image.naturalWidth;
