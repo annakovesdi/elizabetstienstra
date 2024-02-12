@@ -47,11 +47,17 @@
 {% block js %}
 <script nonce="{{request.csp_nonce}}"  >
 window.addEventListener("load", (event) => {
+
   const arrImages = document.querySelectorAll('.modal-image');
   const thumbnails = document.querySelectorAll('.thumbnail');
   // give min width or height depending on image orientation to maximise size
   function imageOreintation(images) {
     images.forEach(image => {
+      // Make sure images are loaded only when needed in modal
+      image.setAttribute("data-src", image.getAttribute('src'));
+      image.removeAttribute('src');
+      image.setAttribute("data-areSet", false);
+
       let width = image.naturalWidth;
       let height = image.naturalHeight;
       if (width > height) {
@@ -67,6 +73,13 @@ window.addEventListener("load", (event) => {
       let width = img.offsetWidth;
       img.nextElementSibling.style.maxWidth = width + 'px';
   }
+  // add src for loading image in modal, on first click
+  function checkForSrc(bolean, image) {
+    if (bolean === 'false') {
+      image.setAttribute("src", image.getAttribute('data-src'));
+      image.setAttribute("data-areSet", true);
+    }
+  }
   // modal show and hide functionality
   function appendModal(images) {
     images.forEach(image => {
@@ -74,6 +87,7 @@ window.addEventListener("load", (event) => {
         let id = image.parentNode.id.toString().substring(1);
         let modal = document.getElementById(id);
         let modalImage = modal.getElementsByTagName('img')[0];
+        checkForSrc(modalImage.getAttribute('data-areSet'), modalImage);
         modal.classList.add('visible');
         modalBodyWidth(modalImage);
         modal.querySelector('.btn-close').addEventListener('click', function() {
