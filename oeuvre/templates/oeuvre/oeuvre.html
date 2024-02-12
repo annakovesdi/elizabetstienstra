@@ -88,8 +88,10 @@ window.addEventListener("load", (event) => {
         let modal = document.getElementById(id);
         let modalImage = modal.getElementsByTagName('img')[0];
         checkForSrc(modalImage.getAttribute('data-areSet'), modalImage);
-        modal.classList.add('visible');
-        modalBodyWidth(modalImage);
+        modalImage.addEventListener("load", (event) => {
+          modal.classList.add('visible');
+          modalBodyWidth(modalImage);
+        })
         modal.querySelector('.btn-close').addEventListener('click', function() {
           modal.classList.remove('visible');
         })
