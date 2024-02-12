@@ -216,10 +216,6 @@ a {
     min-width: 80vw;
 }
 
-.modal-high {
-    min-height: 60vh;
-}
-
 .modal-dialog {
     width: 90%;
     padding-top: 10px;
