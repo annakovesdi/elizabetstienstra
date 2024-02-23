@@ -88,14 +88,15 @@ window.addEventListener("load", (event) => {
         console.log(modalImage.getAttribute('src'))
         // make sure no images load unnecessarily by adding src on click
         if (modalImage.getAttribute('src') === null){
-          checkForSrc(modalImage.getAttribute('data-areSet'), modalImage);
-          modalImage.addEventListener("load", (event) => {
-            modal.classList.add('visible');
+            checkForSrc(modalImage.getAttribute('data-areSet'), modalImage);
+            modalImage.addEventListener("load", (event) => {
+                modalBodyWidth(modalImage);
+                modal.classList.add('visible');
           })
         } else {
-          modal.classList.add('visible');
+            modalBodyWidth(modalImage);
+            modal.classList.add('visible');
         }
-        modalBodyWidth(modalImage);
         // close modal on button click
         modal.querySelector('.btn-close').addEventListener('click', function() {
           modal.classList.remove('visible');
