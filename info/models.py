@@ -28,6 +28,11 @@ class Info(models.Model):
     description = RichTextField()
     image = models.ImageField(null=True, blank=True)
     url = models.CharField(null=True, blank=True, max_length=700)
+    video_url = models.URLField(
+        null=True, blank=True, max_length=700,
+        verbose_name='Video URL (YouTube or Vimeo)',
+        help_text='Paste a YouTube or Vimeo video URL to embed a player.',
+    )
     hide = models.BooleanField(default=False)
 
     def __str__(self):

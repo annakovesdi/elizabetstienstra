@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load video_tags %}
 
 {% block title %}
 <title>News | Elisabet Stienstra</title>
@@ -12,11 +13,11 @@
     <div class="container container-fluid">
         {% for i in news %}
         {% if not i.hide %}
-        <!--Image right news item-->
+
+        <!--Image/video right on even items-->
         {% if forloop.counter|divisibleby:"2" %}
             <div class="row">
             <div class="col-12 col-md-6 p-4">
-                <!--h2 class="text-start xs-heading">{{ i.date | date:"M - Y" }}</h2-->
                 <h3>{{ i.title }}</h3>
                 <p>
                     {{ i.description|safe }}
@@ -25,12 +26,22 @@
                     {% endif %}
                 </p>
             </div>
-            {% if i.image %}
+            {% if i.video_url %}
+                <div class="col-12 col-md-6 order-first order-md-last">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ i.video_url|video_embed_url }}"
+                                title="{{ i.title }}"
+                                allowfullscreen
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            {% elif i.image %}
                 {% if i.url %}
                     <div class="col-12 col-md-6 order-first order-md-last">
                         <a href="http://{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img m-auto"></a>
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="col-12 col-md-6 order-first order-md-last">
                         <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img m-auto">
                     </div>
@@ -38,22 +49,32 @@
             {% endif %}
         </div>
         <hr>
+
         {% else %}
-        <!--Image left news item-->
+        <!--Image/video left on odd items-->
         <div class="row">
-        {% if i.image %}
+        {% if i.video_url %}
+            <div class="col-12 col-md-6 text-md-end">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ i.video_url|video_embed_url }}"
+                            title="{{ i.title }}"
+                            allowfullscreen
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        {% elif i.image %}
             {% if i.url %}
                 <div class="col-12 col-md-6 text-md-end">
                     <a href="{{ i.url }}" target="_blank"><img src="{{ i.image.url }}" alt="image of {{ i.title }} news Elisabet Stienstra" class="news-img m-auto"></a>
                 </div>
-                {% else %}
+            {% else %}
                 <div class="col-12 col-md-6 text-md-end">
                     <img src="{{ i.image.url }}" alt="image of {{ i.title }}" class="news-img m-auto">
                 </div>
             {% endif %}
         {% endif %}
         <div class="col-12 col-md-6 p-4">
-            <!--h2 class="text-start xs-heading">{{ i.date |date:"M - Y" }}</h2-->
             <h3>{{ i.title }}</h3>
             <p>
                 {{ i.description|safe }}

@@ -55,7 +55,6 @@ def add_cv(request):
                             timerProgressBar=True)
     else:
         form = CvForm()
-    form = CvForm()
     template = 'cv/add_cv.html'
     context = {
         'form': form,

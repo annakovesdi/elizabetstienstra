@@ -12,6 +12,7 @@ from .forms import WorkForm, CategoryForm, ImageForm
 def oeuvre(request):
     oeuvre = Work.objects.all()
     category = None
+    images = Image.objects.none()
 
     if request.GET:
         if 'category' in request.GET:

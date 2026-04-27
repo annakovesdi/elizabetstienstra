@@ -93,11 +93,17 @@ MIDDLEWARE = [
 # Security 
 
 SECURE_BROWSER_XSS_FILTER = True
-# SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 31536000 # work up to 31536000
+# Render/Heroku terminate SSL at the load balancer and forward plain HTTP to
+# gunicorn. This header tells Django to trust X-Forwarded-Proto so that
+# is_secure() returns True for HTTPS requests, preventing an infinite redirect loop.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 300  # ramp up: 300 ✓ → 86400 → 2592000 → 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_REFERRER_POLICY = 'same-origin'
 
@@ -129,7 +135,11 @@ CSP_IMG_SRC = [
     'https://res.cloudinary.com/',
     "https://elisabetstienstra.s3.amazonaws.com/",
 ]
-CSP_FRAME_SRC = ["'self'", ]
+CSP_FRAME_SRC = [
+    "'self'",
+    "https://www.youtube.com/",
+    "https://player.vimeo.com/",
+]
 CSP_MEDIA_SRC = ["'self'", ]
 CSP_MANIFEST_SRC = ["'self'", ]
 CSP_FONT_SRC = [
@@ -256,7 +266,7 @@ if STORAGE_DESTINATION == 's3':
     AWS_LOCATION = 'static'
     AWS_QUERYSTRING_AUTH = False
     AWS_HEADERS = {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://elisabetstienstra.com',
     }
 
     STATICFILES_DIRS = [

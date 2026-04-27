@@ -35,8 +35,8 @@ class WorkForm(forms.ModelForm):
         model = Work
         fields = '__all__'
 
-    def __innit__(self, *args, **kwargs):
-        super().__innit__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         categories = Category.objects.all()
         names = [(c.id, c.get_friendly_name()) for c in categories]
 

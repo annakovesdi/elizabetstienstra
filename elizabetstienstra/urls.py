@@ -17,11 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic.base import RedirectView
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.sitemaps.views import sitemap
-from django.urls import path
-from django.views.static import serve
 
 from .sitemaps import StaticViewSitemap
 
@@ -40,5 +36,10 @@ urlpatterns = [
     path('sitemap.xml', sitemap,
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
-    ), 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ),
+]
+
+# Serve media files through Django only in local development (no S3 configured).
+# In production, media is served directly from S3.
+if settings.DEBUG or not settings.STORAGE_DESTINATION == 's3':
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
