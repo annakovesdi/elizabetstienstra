@@ -128,6 +128,7 @@ CSP_CONNECT_SRC = [
     "'self'",
     "https://ka-f.fontawesome.com/",
     "http://*.cke-cs.com",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js.map",
 ]
 CSP_IMG_SRC = [
     "'self'", 
