@@ -5,7 +5,7 @@ cloudinary==1.44.2
 crispy-bootstrap4==2024.10
 dj-database-url==3.1.2
 Django==4.2.30
-django-allauth==0.63.6
+django-allauth==65.16.1
 django-ckeditor==6.7.3
 django-cloudinary-storage==0.3.0
 django-crispy-forms==2.4
@@ -26,5 +26,5 @@ requests-oauthlib==2.0.0
 s3transfer==0.16.1
 sqlparse==0.5.5
 sweetify==2.3.1
-urllib3==2.6.3
+urllib3==2.7.0
 whitenoise==6.12.0
