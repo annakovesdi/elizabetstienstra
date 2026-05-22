@@ -29,8 +29,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', 'elisabetstienstra.com']
-CSRF_TRUSTED_ORIGINS = ['https://elisabetstienstra.com']
+ALLOWED_HOSTS = ['localhost', 'elisabetstienstra.nl']
+CSRF_TRUSTED_ORIGINS = ['https://elisabetstienstra.nl']
 
 EXTERNAL_HOSTNAME = os.getenv('EXTERNAL_HOSTNAME')
 
@@ -119,7 +119,7 @@ CSP_STYLE_SRC = [
 ]
 CSP_SCRIPT_SRC = [
     "'self'", 
-    'https://elisabetstienstra.com/',
+    'https://elisabetstienstra.nl/',
 ]
 CSP_INCLUDE_NONCE_IN = [
     'script-src',
@@ -267,7 +267,7 @@ if STORAGE_DESTINATION == 's3':
     AWS_LOCATION = 'static'
     AWS_QUERYSTRING_AUTH = False
     AWS_HEADERS = {
-        'Access-Control-Allow-Origin': 'https://elisabetstienstra.com',
+        'Access-Control-Allow-Origin': 'https://elisabetstienstra.nl',
     }
 
     STATICFILES_DIRS = [
